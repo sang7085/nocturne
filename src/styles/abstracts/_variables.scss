@@ -1,0 +1,71 @@
+
+// ===========================================
+// Color Tokens
+// ===========================================
+
+// Primary Colors
+$color-primary: #ED0100;
+$color-primary-half: rgba(237, 1, 0, 0.5);
+
+// Neutral Colors
+$color-white: #ffffff;
+$color-black: #000000;
+$color-gray-100: #f8f9fa;
+$color-gray-200: #e9ecef;
+$color-gray-300: #dee2e6;
+$color-gray-400: #ced4da;
+$color-gray-500: #adb5bd;
+$color-gray-600: #6c757d;
+$color-gray-700: #495057;
+$color-gray-800: #343a40;
+$color-gray-900: #212529;
+
+// Semantic Colors
+$color-success: #28a745;
+$color-warning: #ffc107;
+$color-error: #dc3545;
+$color-info: #17a2b8;
+
+// Background Colors
+$color-bg-primary: $color-white;
+$color-bg-secondary: $color-gray-100;
+
+// Text Colors
+$color-text-primary: $color-black;
+$color-text-secondary: $color-gray-700;
+$color-text-muted: $color-gray-500;
+$color-text-inverse: $color-white;
+
+// ===========================================
+// Border Tokens
+// ===========================================
+
+$border-width-thin: 1px;
+$border-width-medium: 2px;
+$border-width-thick: 4px;
+
+$border-radius-sm: 0.25rem;   // 4px
+$border-radius-md: 0.5rem;    // 8px
+$border-radius-lg: 1rem;      // 16px
+$border-radius-full: 9999px;
+
+// ===========================================
+// Breakpoint Tokens
+// ===========================================
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+// ===========================================
+// Z-index Tokens
+// ===========================================
+
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;

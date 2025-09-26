@@ -1,0 +1,109 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.loading-sec {
+    @include flex-center;
+    @include pos-fixed;
+    z-index: $z-index-fixed;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: $color-black;
+    .loading-line-wrap {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        .line {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: $color-primary-half;
+            &.vertical {
+                width: 1px;
+                height: 100%;
+            }
+            &.top {
+                top: 50px;
+            }
+            &.bottom {
+                bottom: 50px;
+            }
+            &.left {
+                left: 50px;
+            }
+            &.right {
+                right: 50px;
+            }
+            &.icon {
+                width: 21px;
+                height: 21px;
+                background: url("../../../public/images/icon-plus.png") no-repeat;
+
+                &.top-left {
+                    top: 40px;
+                    left: 40px;
+                }
+                &.top-right {
+                    top: 40px;
+                    right: 40px;
+                }
+                &.bottom-left {
+                    bottom: 40px;
+                    left: 40px;
+                }
+                &.bottom-right {
+                    bottom: 40px;
+                    right: 40px;
+                }
+            }
+        }
+    } 
+    .loading-percent {
+        font-size: 100px;
+        color: $color-primary;
+        span {
+            font-size: 30px;
+        }
+    }
+    .loading-txt {
+        position: absolute;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: $color-primary;
+
+        &.line-break {
+            span {
+                display: block;
+                & + span {
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        &.huge {
+            font-size: 30px;
+        }
+
+        &.group {
+            @include dis-grid(2, 2, 20px, 10px);
+        }
+        &.top-left {
+            top: 62px;
+            left: 62px;
+        }
+        &.top-right {
+            top: 62px;
+            right: 62px;
+        }
+        &.bottom-left {
+            bottom: 62px;
+            left: 62px;
+        }
+        
+    }
+    .loading-percent {
+        position: absolute;
+        bottom: 32px;
+        right: 65px;
+    }
+}

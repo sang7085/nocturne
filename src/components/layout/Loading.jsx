@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+"use client";
+import { useEffect, useState, useRef } from "react";
+import gsap from "gsap";
 import Image from "next/image";
 
-export default function Loading({setLoading}) {
+export default function Loading({setLoading, loading}) {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -9,7 +11,9 @@ export default function Loading({setLoading}) {
             setProgress((prev) => {
                 if (prev >= 100) {
                     clearInterval(percent);
-                    setLoading(false);
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 1000);
                     return 100;
                 };
                 return prev + 1;
@@ -18,19 +22,22 @@ export default function Loading({setLoading}) {
     }, []);
 
     function loadingImage(progress) {
-        if (progress < 20) return "/images/load-img01.png"
-        if (progress < 40) return "/images/load-img02.png";
-        if (progress < 60) return "/images/load-img03.png";
-        if (progress < 80) return "/images/load-img04.png";
-        if (progress < 100) return "/images/load-img05.png";
-        return "/images/load-img06.png";           
+        if (progress < 60) {
+            const index = Math.floor(progress / 3) % 6;
+            return `/images/load-img0${index + 1}.png`;
+        } else if (progress < 100 ){
+            const index = Math.floor(progress / 10) - 6;
+            return `/images/load-img0${index + 1}.png`;
+        } else {
+            return `/images/load-img06.png`;
+        }
     }
 
     const currentImage = loadingImage(progress);
 
     return (
         <>  
-            <div className="loading-sec">
+            <div className={`loading-sec ${loading ? "block" : "hidden"}`}>
                 <div className="loading-line-wrap">
                     <div className="line top"></div>
                     <div className="line bottom"></div>

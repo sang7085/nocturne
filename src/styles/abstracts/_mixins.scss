@@ -1,9 +1,3 @@
-@mixin flex-center() {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 @mixin pos-absolute() {
     position: absolute;
     top: 0;
@@ -31,4 +25,20 @@
     row-gap: $rowGap;
     width: auto;
     height: auto;
+}
+
+@mixin dis-flex {
+    display: flex;
+}
+
+@mixin dis-flex-center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin dis-flex-between() {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

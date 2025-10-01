@@ -1,21 +1,11 @@
-import { useEffect, useState, useRef } from "react";
-import Loading from "@/components/layout/Loading";
-import Header from "@/components/layout/Header";
-import InfiniteScrollTest from "@/components/sections/InfiniteScrollTest";
-import VisualSec from "@/components/sections/VisualSec";
-import AchieveSec from "@/components/sections/AchieveSec";
-import GallerySec from "@/components/sections/GallerySec";
-import gsap from "gsap";
-import Lenis from "@studio-freight/lenis";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
-export default function Home() {
-  const [loading, setLoading] = useState(true);
+export default function InfiniteScrollTest() {
   const trackRef = useRef(null);
-  
+
   useEffect(() => {
     const track = trackRef.current;
-    const sections = Array.from(track.querySelectorAll("section"));
+    const sections = Array.from(track.querySelectorAll(".section"));
     const heights = sections.slice(1, -1).map((s) => s.offsetHeight);
     const totalHeight = heights.reduce((a, b) => a + b, 0);
     const firstCloneHeight = sections[0].offsetHeight;
@@ -61,19 +51,31 @@ export default function Home() {
       cancelAnimationFrame(rafId);
     };
   }, []);
+  
 
   return (
-    <>
-      <Loading setLoading={setLoading} loading={loading} />
-      <Header />
-      <main ref={trackRef}>
-        <GallerySec loading={loading} />
-        <VisualSec loading={loading} />
-        <AchieveSec loading={loading} />
-        <GallerySec loading={loading} />
-        <VisualSec loading={loading} />
-      </main>
-      {/* <InfiniteScrollTest /> */}
-    </>
+    <div style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
+      <div ref={trackRef}>
+      <section className="section" style={{ height: "120vh", background: "seagreen" }}>
+        Section 3 (clone)
+      </section>
+
+      {/* 원본 세트 */}
+      <section className="section" style={{ height: "100vh", background: "tomato" }}>
+        Section 1
+      </section>
+      <section className="section" style={{ height: "150vh", background: "skyblue" }}>
+        Section 2
+      </section>
+      <section className="section" style={{ height: "120vh", background: "seagreen" }}>
+        Section 3
+      </section>
+
+      {/* 맨 아래에 Section1 클론 */}
+      <section className="section" style={{ height: "100vh", background: "tomato" }}>
+        Section 1 (clone)
+      </section>
+      </div>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, createContext, useContext } from "react";
 import Loading from "@/components/layout/Loading";
 import Header from "@/components/layout/Header";
 import InfiniteScrollTest from "@/components/sections/InfiniteScrollTest";
@@ -6,12 +6,14 @@ import VisualSec from "@/components/sections/VisualSec";
 import AchieveSec from "@/components/sections/AchieveSec";
 import GallerySec from "@/components/sections/GallerySec";
 import gsap from "gsap";
-import Lenis from "@studio-freight/lenis";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const [loopY, setLoopY] = useState(0);
   const [loading, setLoading] = useState(true);
   const trackRef = useRef(null);
+  const [firstOffset, setFirstOffset] = useState(0);
   
   useEffect(() => {
     const track = trackRef.current;
@@ -20,58 +22,66 @@ export default function Home() {
     const totalHeight = heights.reduce((a, b) => a + b, 0);
     const firstCloneHeight = sections[0].offsetHeight;
     
-    let targetY = firstCloneHeight; // 목표 위치
-    let currentY = targetY;         // 실제 반영되는 위치
-    const ease = 0.08;              // 보간 속도 (0.05~0.15 사이 조절)
+    let scrollY = firstCloneHeight;
+    let targetY = firstCloneHeight; 
+    let currentY = targetY;         
+    const ease = 0.05;          
   
-    let rafId;
-  
+    if (sections.length > 0) {
+      setFirstOffset(firstCloneHeight);
+    }
+
     const update = () => {
-      // lerp: currentY가 targetY를 따라가도록
+      // lerp
       currentY += (targetY - currentY) * ease;
-  
-      const loopY = ((currentY % totalHeight) + totalHeight) % totalHeight;
-      track.style.transform = `translateY(-${loopY}px)`;
-  
-      rafId = requestAnimationFrame(update);
-      console.log("loopY:", loopY.toFixed(2), "targetY:", targetY.toFixed(2), "currentY:", currentY.toFixed(2));
+      const loopYVal = Math.round(((currentY % totalHeight) + totalHeight) % totalHeight);
+      track.style.transform = `translateY(-${loopYVal}px)`;
+      setLoopY(loopYVal); // ✅ loopY 업데이트
+      requestAnimationFrame(update);
     };
   
     const onWheel = (e) => {
+      scrollY += e.deltaY;
       targetY += e.deltaY;
   
-      // 맨 위로 올라가는 경우
       if (targetY < 0) {
         targetY += totalHeight;
-        currentY += totalHeight; // currentY도 보정
+        currentY += totalHeight;
+        scrollY += totalHeight;
       }
-  
-      // 맨 아래로 내려가는 경우
       if (targetY > totalHeight) {
         targetY -= totalHeight;
         currentY -= totalHeight;
+        scrollY -= totalHeight;
       }
+  
+      ScrollTrigger.update();
     };
   
     window.addEventListener("wheel", onWheel, { passive: true });
-    rafId = requestAnimationFrame(update);
+    requestAnimationFrame(update);
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
   
     return () => {
       window.removeEventListener("wheel", onWheel);
-      cancelAnimationFrame(rafId);
     };
   }, []);
+  
 
   return (
     <>
       <Loading setLoading={setLoading} loading={loading} />
       <Header />
-      <main ref={trackRef}>
-        <GallerySec loading={loading} />
-        <VisualSec loading={loading} />
-        <AchieveSec loading={loading} />
-        <GallerySec loading={loading} />
-        <VisualSec loading={loading} />
+      <main style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
+        <div ref={trackRef}>
+          <GallerySec loading={loading} loopY={loopY} />
+          <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} />
+          <AchieveSec loading={loading} loopY={loopY} firstOffset={firstOffset} />
+          <GallerySec loading={loading} loopY={loopY} />
+          <VisualSec loading={loading} loopY={loopY} />
+        </div>
       </main>
       {/* <InfiniteScrollTest /> */}
     </>

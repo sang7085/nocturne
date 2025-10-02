@@ -39,14 +39,14 @@ export default function Loading({setLoading, loading}) {
         <>  
             <div className={`loading-sec ${loading ? "block" : "hidden"}`}>
                 <div className="loading-line-wrap">
-                    <div className="line top"></div>
-                    <div className="line bottom"></div>
-                    <div className="line left vertical"></div>
-                    <div className="line right vertical"></div>
-                    <div className="line icon top-left"></div>
-                    <div className="line icon top-right"></div>
-                    <div className="line icon bottom-left"></div>
-                    <div className="line icon bottom-right"></div>
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line left vertical"></div>
+                    <div className="icon-line right vertical"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
                 </div>
                 <div className="loading-image-wrap">
                     <Image src={currentImage} alt={`loading-image`} width={600} height={480}/>

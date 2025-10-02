@@ -3,6 +3,7 @@
 @use "../abstracts/variables" as *;
 
 .visual-sec {
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 100vh;
@@ -68,6 +69,13 @@
             &:first-child {
                 display: inline-block;
             }
+        }
+    }
+    .trophy {
+        position: absolute;
+        
+        img {
+            width: 90%;
         }
     }
 }

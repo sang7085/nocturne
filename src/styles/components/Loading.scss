@@ -26,51 +26,8 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        .line {
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            background: $color-primary-half;
-            &.vertical {
-                width: 1px;
-                height: 100%;
-            }
-            &.top {
-                top: 50px;
-            }
-            &.bottom {
-                bottom: 50px;
-            }
-            &.left {
-                left: 50px;
-            }
-            &.right {
-                right: 50px;
-            }
-            &.icon {
-                width: 21px;
-                height: 21px;
-                background: url("../../../public/images/icon-plus.png") no-repeat;
-
-                &.top-left {
-                    top: 40px;
-                    left: 40px;
-                }
-                &.top-right {
-                    top: 40px;
-                    right: 40px;
-                }
-                &.bottom-left {
-                    bottom: 40px;
-                    left: 40px;
-                }
-                &.bottom-right {
-                    bottom: 40px;
-                    right: 40px;
-                }
-            }
-        }
     } 
+    
     .loading-percent {
         font-family: "Anton", sans-serif;
         font-size: 100px;

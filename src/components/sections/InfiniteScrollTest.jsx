@@ -56,25 +56,25 @@ export default function InfiniteScrollTest() {
   return (
     <div style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
       <div ref={trackRef}>
-      <section className="section" style={{ height: "120vh", background: "seagreen" }}>
-        Section 3 (clone)
-      </section>
+        <section className="section" style={{ height: "120vh", background: "seagreen" }}>
+          Section 3 (clone)
+        </section>
 
-      {/* 원본 세트 */}
-      <section className="section" style={{ height: "100vh", background: "tomato" }}>
-        Section 1
-      </section>
-      <section className="section" style={{ height: "150vh", background: "skyblue" }}>
-        Section 2
-      </section>
-      <section className="section" style={{ height: "120vh", background: "seagreen" }}>
-        Section 3
-      </section>
+        {/* 원본 세트 */}
+        <section className="section" style={{ height: "100vh", background: "tomato" }}>
+          Section 1
+        </section>
+        <section className="section" style={{ height: "150vh", background: "skyblue" }}>
+          Section 2
+        </section>
+        <section className="section" style={{ height: "120vh", background: "seagreen" }}>
+          Section 3
+        </section>
 
-      {/* 맨 아래에 Section1 클론 */}
-      <section className="section" style={{ height: "100vh", background: "tomato" }}>
-        Section 1 (clone)
-      </section>
+        {/* 맨 아래에 Section1 클론 */}
+        <section className="section" style={{ height: "100vh", background: "tomato" }}>
+          Section 1 (clone)
+        </section>
       </div>
     </div>
   );

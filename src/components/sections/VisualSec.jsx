@@ -1,7 +1,10 @@
+'use client';
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-export default function VisualSec({ Loading }) {
+export default function VisualSec({ Loading, loopY }) {
+
     useEffect(() => {
         gsap.set(".slogan-txt", {
             yPercent: 100,
@@ -12,6 +15,13 @@ export default function VisualSec({ Loading }) {
         gsap.set(".keep-scroll .txt", {
             yPercent: 100,
         });
+        gsap.set(".trophy", {
+            left: "50%",
+            top: "50%",
+            xPercent: -50,
+            yPercent: -50,
+        });
+
         if(!Loading) {
             const tl = gsap.timeline({
                 defaults: {
@@ -39,6 +49,23 @@ export default function VisualSec({ Loading }) {
         }
       }, []);
 
+
+      useEffect(() => {
+        // scrollTrigger 대용 패럴렉스
+        if(!Loading) {
+            const baseOffset = document.querySelector(".visual-sec").offsetTop;
+            const visualSecH = document.querySelector(".visual-sec").offsetHeight;
+            const relativeY = (loopY - visualSecH) * 0.1;
+            if (loopY > baseOffset) {
+                gsap.to(".trophy", { y: relativeY });
+                gsap.to(".slogan-txt", { yPercent: relativeY })
+            } else {
+                gsap.to(".trophy", { y: relativeY });
+                gsap.to(".slogan-txt", { yPercent: 0 });
+            }
+        }
+      }, [loopY]);
+
     return (
         <>
             <section className="visual-sec">
@@ -64,6 +91,9 @@ export default function VisualSec({ Loading }) {
                 <div className="floating-txt">
                     <p>Give up pursuing eloquence, </p>
                     <p>unless you can speak as you feel</p>
+                </div>
+                <div className="trophy">
+                    <img src="/images/demo-trophy.png" alt="" />
                 </div>
             </section>
         </>

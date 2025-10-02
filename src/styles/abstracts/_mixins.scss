@@ -10,7 +10,7 @@
     left: 0;
 }
 
-@mixin pos-center() {
+@mixin pos-absol-center() {
     position: absolute;
     top: 50%;
     left: 50%;

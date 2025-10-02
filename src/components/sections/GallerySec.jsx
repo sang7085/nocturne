@@ -1,7 +1,9 @@
 export default function GallerySec({}) {
     return(
         <>
-          <section className="gallery-sec"></section>  
+          <section className="gallery-sec">
+            
+          </section>  
         </>
     )
 }

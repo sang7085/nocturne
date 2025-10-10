@@ -6,6 +6,19 @@ section {
     position: relative;
 }
 
+.main {
+    &.pc {
+        overflow: hidden;
+        position: relative;
+        height: 100vh;
+    }
+    &.pc {
+        overflow: visible;
+        position: relative;
+        height: auto;
+    }
+}
+
 .inner {
     position: relative;
     margin: 0 auto;

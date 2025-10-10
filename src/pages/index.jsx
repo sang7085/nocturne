@@ -77,7 +77,7 @@ export default function Home() {
     <>
       <Loading setLoading={setLoading} loading={loading} />
       <Header />
-      <main style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
+      <main className={isMobile ? "main mobile" : "main pc"}>
         <div ref={trackRef}>
           <GallerySec loading={loading} loopY={loopY} />
           <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} />

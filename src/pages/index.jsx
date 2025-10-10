@@ -11,18 +11,18 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   const trackRef = useRef(null);
   const [loopY, setLoopY] = useState(0);
   const [loading, setLoading] = useState(true);
   const [firstOffset, setFirstOffset] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
-    if (isMobile) {
+    const checkMobile = /Mobi|Android/i.test(navigator.userAgent);
+    setIsMobile(checkMobile);
+    if (checkMobile) {
       alert("모바일입니다");
       return;
-    } else {
-      alert("PC입니다.");
     }
 
     const track = trackRef.current;
@@ -79,14 +79,18 @@ export default function Home() {
     <>
       <Loading setLoading={setLoading} loading={loading} />
       <Header />
-      <main className={isMobile ? "main mobile" : "main pc"}>
+      <main className={isMobile ? "mobile" : "pc"}>
         <div ref={trackRef}>
-          <GallerySec className={isMobile ? "section mobile" : "section pc"} loading={loading} loopY={loopY} />
+          {!isMobile && (
+            <GallerySec loading={loading} loopY={loopY} />
+          )}
           <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} />
           <AchieveSec loading={loading} loopY={loopY} />
           <HistorySec loading={loading} loopY={loopY} />
           <GallerySec loading={loading} loopY={loopY} />
-          <VisualSec className={isMobile ? "section mobile" : "section pc"} loading={loading} loopY={loopY} />
+          {!isMobile && (
+            <VisualSec loading={loading} loopY={loopY} />
+          )}
         </div>
       </main>
       {/* <InfiniteScrollTest /> */}

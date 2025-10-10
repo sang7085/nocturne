@@ -6,7 +6,7 @@ section {
     position: relative;
 }
 
-.main {
+main {
     &.pc {
         overflow: hidden;
         position: relative;
@@ -19,7 +19,7 @@ section {
     }
 }
 
-section {
+.section {
     &.pc {
         display: block;
     }

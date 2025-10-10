@@ -5,7 +5,7 @@
 .gallery-sec {
     overflow: hidden;
     width: 100%;
-    height: 100vh;
+    height: 200vh;
     background-color: $color-primary;
     
     &::after {
@@ -15,6 +15,15 @@
         left: 0;
         width: 100%;
         height: 472px;
-        background: linear-gradient(180deg, var(--Background, #0D0D0D) 0%, var(--Main_Color, #ED0100) 100%);
+        background: linear-gradient(180deg, #0D0D0D 0%, #ED0100 100%);
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 472px;
+        background: linear-gradient(0deg, #0D0D0D 0%, #ED0100 100%);
     }
 }

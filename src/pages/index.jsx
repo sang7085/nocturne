@@ -55,6 +55,7 @@ export default function Home() {
     };
   
     const onTouchMove = (e) => {
+      e.preventDefault();
       const touchY = e.touches[0].clientY;
       const deltaY = startY - touchY; // 위로 스와이프하면 양수
       startY = touchY;
@@ -91,8 +92,6 @@ export default function Home() {
     };
   }, []);
   
-  
-
   return (
     <>
       <Loading setLoading={setLoading} loading={loading} />

@@ -11,16 +11,18 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   const trackRef = useRef(null);
   const [loopY, setLoopY] = useState(0);
   const [loading, setLoading] = useState(true);
   const [firstOffset, setFirstOffset] = useState(0);
   
   useEffect(() => {
-    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     if (isMobile) {
       console.log("모바일 환경 - 가상 스크롤 비활성화");
       return;
+    } else {
+      console.log("PC 환경 - 활성화");
     }
 
     const track = trackRef.current;

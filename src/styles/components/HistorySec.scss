@@ -1,0 +1,148 @@
+@use "../abstracts/fonts" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.history_sec {
+    background-color: #0D0D0D;
+    .history_tit {
+        .slide_title {
+            font-size: 126px;
+            text-transform: uppercase;
+            color: $color-white;
+            line-height: 1;
+            opacity: 0;
+
+            &:nth-child(1) {
+                margin-left: 485px;
+            }
+            &:nth-child(2) {
+                margin-left: 157px;
+            }
+            &:nth-child(3) {
+                margin-left: 157px;
+            }
+            p {
+                font-family: 'Inconsolata', monospace;
+                font-weight: 900;
+                font-variation-settings: 'wdth' 87.5;
+            }
+        }
+    }
+    .history_slogan {
+        padding: 100px 0 0 970px;
+        p {
+            overflow: hidden;
+            max-width: 514px;
+            span {
+                opacity: 0;
+                font-size: 18px;
+                font-family: 'Inconsolata', monospace;
+                font-weight: 400;
+                font-variation-settings: 'wdth' 87.5;
+                color: $color-white;
+            }
+        }
+    }
+    .count_area {
+        position: relative;
+        padding-bottom: calc((302) * 4px);
+        margin-top: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;        
+        .count_list {
+            position: absolute;
+            display: flex;
+            padding: 0 0 0 10px;
+            gap: 100px;
+            width: 100%;
+            border: 1px solid $color-primary-line;
+            border-right: 0;
+            background-color: $color-black;
+
+            &.full {
+                padding: 0 0 0 164px;
+                width: 100%;
+                border-left: 0;
+            }
+
+            &:nth-child(2) {
+                top: 190px;
+                left: 1123px;
+                max-width: calc(100% - 1123px);
+            }
+
+            &:nth-child(3) {
+                top: 572px;
+                left: 798px;
+                max-width: calc(100% - 798px);
+            }
+
+            &:nth-child(4) {
+                top: 772px;
+                left: 312px;
+                max-width: calc(100% - 312px);
+            }
+
+            .count_num {
+                font-family: "Anton", sans-serif;
+                font-size: 300px;
+                line-height: 1;
+                color: $color-primary;
+                &.ones_place {
+                    width: 150px;
+                }
+                &.tens_place {
+                    width: 300px;
+                }
+                &.hunds_place {
+                    width: 445px;
+                }
+            }
+            .count_date {
+                transform: translateY(50px);
+                flex-shrink: 0;
+                color: $color-primary;
+                font-family: 'Inconsolata', monospace;
+                font-weight: 400;
+                font-variation-settings: 'wdth' 87.5;
+            }
+            .count_info {
+                transform: translateY(50px);
+                .info_tit {
+                    display: block;
+                    font-size: 40px;
+                    font-family: 'Inconsolata', monospace;
+                    font-weight: 800;
+                    font-variation-settings: 'wdth' 87.5;
+                    line-height: 1;
+                    color: $color-primary;
+                }
+                .info_txt {
+                    display: block;
+                    margin-top: 30px;
+                    // max-width: 768px;
+                    font-size: 24px;
+                    font-family: 'Inconsolata', monospace;
+                    font-weight: 400;
+                    font-variation-settings: 'wdth' 87.5;
+                    color: $color-primary;
+                }
+            }
+            .icon {
+                position: absolute;
+                width: 21px;
+                height: 21px;
+                background: url("../../../public/images/icon-plus.png") no-repeat;
+                &.top-left {
+                    top: -11px;
+                    left: -11px;
+                }
+                &.bottom-left {
+                    bottom: -11px;
+                    left: -11px;
+                }
+            }
+        }
+    }
+}

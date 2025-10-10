@@ -1,12 +1,11 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-export default function AchieveSec({ Loading, loopY, firstOffset }) {
+export default function AchieveSec({ Loading, loopY }) {
 
   useEffect(() => {
     if(!Loading) {
       const baseOffset = document.querySelector(".achieve-sec").offsetTop;
-      const visualSecH = document.querySelector(".achieve-sec").offsetHeight;
       if (loopY > baseOffset - baseOffset / 4) {
         gsap.to(".left-wall", {xPercent: -100, duration: 1.5,});
         gsap.to(".right-wall", {xPercent: 100, duration: 1.5,});

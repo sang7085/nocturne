@@ -2,8 +2,13 @@
 @use "../abstracts/mixins" as *;
 @use "../abstracts/variables" as *;
 
+section {
+    position: relative;
+}
+
 .inner {
     position: relative;
+    margin: 0 auto;
     width: calc(100% - 64px);
 }
 

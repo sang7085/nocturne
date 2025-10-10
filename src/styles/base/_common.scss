@@ -19,6 +19,15 @@ section {
     }
 }
 
+section {
+    &.pc {
+        display: block;
+    }
+    &.mobile {
+        display: none;
+    }
+}
+
 .inner {
     position: relative;
     margin: 0 auto;

@@ -81,12 +81,12 @@ export default function Home() {
       <Header />
       <main className={isMobile ? "main mobile" : "main pc"}>
         <div ref={trackRef}>
-          <GallerySec loading={loading} loopY={loopY} />
+          <GallerySec className={isMobile ? "section mobile" : "section pc"} loading={loading} loopY={loopY} />
           <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} />
           <AchieveSec loading={loading} loopY={loopY} />
           <HistorySec loading={loading} loopY={loopY} />
           <GallerySec loading={loading} loopY={loopY} />
-          <VisualSec loading={loading} loopY={loopY} />
+          <VisualSec className={isMobile ? "section mobile" : "section pc"} loading={loading} loopY={loopY} />
         </div>
       </main>
       {/* <InfiniteScrollTest /> */}

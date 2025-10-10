@@ -17,55 +17,39 @@ export default function Home() {
   const [firstOffset, setFirstOffset] = useState(0);
   
   useEffect(() => {
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
+      console.log("모바일 환경 - 가상 스크롤 비활성화");
+      return;
+    }
+
     const track = trackRef.current;
     const sections = Array.from(track.querySelectorAll("section"));
     const heights = sections.slice(1, -1).map((s) => s.offsetHeight);
     const totalHeight = heights.reduce((a, b) => a + b, 0);
     const firstCloneHeight = sections[0].offsetHeight;
-  
+    
     let scrollY = firstCloneHeight;
-    let targetY = firstCloneHeight;
-    let currentY = targetY;
-    const ease = 0.05;
+    let targetY = firstCloneHeight; 
+    let currentY = targetY;         
+    const ease = 0.05;          
   
     if (sections.length > 0) {
       setFirstOffset(firstCloneHeight);
     }
-  
+
     const update = () => {
       currentY += (targetY - currentY) * ease;
       const loopYVal = Math.round(((currentY % totalHeight) + totalHeight) % totalHeight);
       track.style.transform = `translateY(-${loopYVal}px)`;
-      setLoopY(loopYVal);
+      setLoopY(loopYVal); // ✅ loopY 업데이트
       requestAnimationFrame(update);
     };
   
-    // ✅ wheel (desktop)
     const onWheel = (e) => {
-      const deltaY = e.deltaY;
-      scrollY += deltaY;
-      targetY += deltaY;
-      wrapLoop();
-    };
+      scrollY += e.deltaY;
+      targetY += e.deltaY;
   
-    // ✅ touch (mobile)
-    let startY = 0;
-    const onTouchStart = (e) => {
-      startY = e.touches[0].clientY;
-    };
-  
-    const onTouchMove = (e) => {
-      e.preventDefault();
-      const touchY = e.touches[0].clientY;
-      const deltaY = startY - touchY; // 위로 스와이프하면 양수
-      startY = touchY;
-      scrollY += deltaY;
-      targetY += deltaY;
-      wrapLoop();
-    };
-  
-    // ✅ 공통 루프 wrapping (경계 처리)
-    const wrapLoop = () => {
       if (targetY < 0) {
         targetY += totalHeight;
         currentY += totalHeight;
@@ -76,22 +60,19 @@ export default function Home() {
         currentY -= totalHeight;
         scrollY -= totalHeight;
       }
+  
+      ScrollTrigger.update();
     };
   
-    // 이벤트 등록
     window.addEventListener("wheel", onWheel, { passive: true });
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-  
     requestAnimationFrame(update);
   
     return () => {
       window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
     };
   }, []);
   
+
   return (
     <>
       <Loading setLoading={setLoading} loading={loading} />

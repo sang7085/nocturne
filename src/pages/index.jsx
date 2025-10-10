@@ -19,10 +19,10 @@ export default function Home() {
   
   useEffect(() => {
     if (isMobile) {
-      console.log("모바일 환경 - 가상 스크롤 비활성화");
+      alert("모바일입니다");
       return;
     } else {
-      console.log("PC 환경 - 활성화");
+      alert("PC입니다.");
     }
 
     const track = trackRef.current;

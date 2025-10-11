@@ -15,23 +15,28 @@ const once = useRef({
     count3: false,
     count4: false,
  });
-  useEffect(() => {
-    if(!Loading) {
+ useEffect(() => {
+     if(!Loading) {
+         const baseOffset = document.querySelector(".history_sec").offsetTop;
+         const element1 = document.querySelector(".history_tit").offsetTop;
+         const element2 = document.querySelector(".history_slogan").offsetTop;
+         const countLists = document.querySelectorAll(".count_list");
+         const countList1 = countLists[0].offsetTop;
+         const countList2 = countLists[1].offsetTop;
+         const countList3 = countLists[2].offsetTop;
+         const countList4 = countLists[3].offsetTop;
         if(!once.title) {
             gsap.set(".per20", {
                 xPercent: 20,
             });
         }
-        const baseOffset = document.querySelector(".history_sec").offsetTop;
-        const element1 = document.querySelector(".history_tit").offsetTop;
-        const element2 = document.querySelector(".history_slogan").offsetTop;
-        const countLists = document.querySelectorAll(".count_list");
-        const countList1 = countLists[0].offsetTop;
-        const countList2 = countLists[1].offsetTop;
-        const countList3 = countLists[2].offsetTop;
-        const countList4 = countLists[3].offsetTop;
-        // console.log(baseOffset, loopY, countArea, countList1, countList2, countList3, countList4)
-                
+        if(!once.count1 && !once.count2 && !once.count3 && !once.count4) {
+            countLists.forEach((el) => {
+            gsap.set(el, {
+                xPercent: 100,
+            })
+        })
+        }
         // 섹션 - 섹션 1/4 + 요소 offsetTop 값
         if (loopY > baseOffset - baseOffset / 4 + element1 && !once.title) {
             once.title = true;
@@ -46,7 +51,8 @@ const once = useRef({
         
         // count area start -------------------------------------------------------
         if (loopY > baseOffset + countList1 && !once.count1) {
-            console.log("1")
+            console.log("1");
+            gsap.to(countLists[0], {xPercent: 0, duration: .6});
             once.count1 = true;
             const counter = new CountUp(countRef1.current, 482, {
                 duration: 1.5,
@@ -55,6 +61,7 @@ const once = useRef({
             counter.start();
         }
         if (loopY > baseOffset + countList2 && !once.count2) {
+            gsap.to(countLists[1], {xPercent: 0, duration: .6});
             once.count2 = true; 
             const counter = new CountUp(countRef2.current, 8, {
                 duration: 1.5,
@@ -63,6 +70,7 @@ const once = useRef({
             counter.start();
         }
         if (loopY > baseOffset + countList3 && !once.count3) {
+            gsap.to(countLists[2], {xPercent: 0, duration: .6});
             once.count3 = true;
             const counter = new CountUp(countRef3.current, 74, {
                 duration: 1.5,
@@ -71,6 +79,7 @@ const once = useRef({
             counter.start();
         }
         if (loopY > baseOffset + countList4 && !once.count4) {
+            gsap.to(countLists[3], {xPercent: 0, duration: .6});
             once.count4 = true;
             const counter = new CountUp(countRef4.current, 325, {
                 duration: 1.5,
@@ -126,6 +135,8 @@ const once = useRef({
                             <span className="info_tit">Champions Utilized</span>
                             <span className="info_txt">Showcasing versatility and adaptability through <br /> a wide range of strategies and hero picks.</span>
                         </p>
+                        <div className="icon top-left"></div>
+                        <div className="icon bottom-left"></div>
                     </li>
                     <li className="count_list">
                         <p className="count_num hunds_place"><span ref={countRef4}>0</span></p>
@@ -134,6 +145,8 @@ const once = useRef({
                             <span className="info_tit">Victories Secured</span>
                             <span className="info_txt">Proof of consistent dominance and the ability <br /> to turn challenges into triumphs.</span>
                         </p>
+                        <div className="icon top-left"></div>
+                        <div className="icon bottom-left"></div>
                     </li>
                 </ul>
           </section> 

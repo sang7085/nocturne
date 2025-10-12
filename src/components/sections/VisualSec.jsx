@@ -57,15 +57,15 @@ export default function VisualSec({ Loading, loopY }) {
             const visualSecH = document.querySelector(".visual-sec").offsetHeight;
             const relativeY = (loopY - visualSecH) * 0.1;
             // console.log(baseOffset, loopY, relativeY);
-            // if (loopY > baseOffset) {
-            //     gsap.to(".trophy", { y: relativeY });
-            //     gsap.to(".slogan-txt", { yPercent: relativeY });
-            //     console.log("111")
-            // } else {
-            //     gsap.to(".trophy", { y: relativeY });
-            //     gsap.to(".slogan-txt", { yPercent: 0 });
-            //     console.log("222")
-            // }
+            if (loopY > baseOffset) {
+                gsap.to(".trophy", { y: relativeY });
+                gsap.to(".slogan-txt", { y: relativeY });
+                console.log("111")
+            } else {
+                gsap.to(".trophy", { y: relativeY });
+                gsap.to(".slogan-txt", { y: relativeY });
+                console.log("222")
+            }
         }
       }, [loopY]);
 

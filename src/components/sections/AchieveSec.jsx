@@ -5,10 +5,11 @@ export default function AchieveSec({ Loading, loopY }) {
 
   useEffect(() => {
     if(!Loading) {
+      const gap = 400;
       const baseOffset = document.querySelector(".achieve-sec").offsetTop;
-      if (loopY > baseOffset - baseOffset / 4) {
-        gsap.to(".left-wall", {xPercent: -100, duration: 1.5,});
-        gsap.to(".right-wall", {xPercent: 100, duration: 1.5,});
+      if (loopY > baseOffset - gap) {
+        gsap.to(".left-wall", {xPercent: -100, duration: 1,});
+        gsap.to(".right-wall", {xPercent: 100, duration: 1,});
       }
   }
   }, [loopY])

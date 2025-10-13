@@ -6,6 +6,13 @@ section {
     position: relative;
 }
 
+.sec_tit {
+    padding-bottom: 52px;
+    font-size: 28px;
+    font-weight: 600;
+    color: $color-primary;
+}
+
 main {
     &.pc {
         overflow: hidden;
@@ -31,7 +38,7 @@ main {
 .inner {
     position: relative;
     margin: 0 auto;
-    width: calc(100% - 64px);
+    width: calc(100% - 100px);
 }
 
 .icon-line {

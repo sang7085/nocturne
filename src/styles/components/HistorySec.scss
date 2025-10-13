@@ -22,9 +22,8 @@
                 margin-left: 157px;
             }
             p {
-                font-family: 'Inconsolata', monospace;
+                font-family: 'InconsolataSemiCondensed', monospace;
                 font-weight: 900;
-                font-variation-settings: 'wdth' 87.5;
             }
         }
     }
@@ -36,9 +35,8 @@
             span {
                 opacity: 0;
                 font-size: 18px;
-                font-family: 'Inconsolata', monospace;
+                font-family: 'InconsolataSemiCondensed', monospace;
                 font-weight: 400;
-                font-variation-settings: 'wdth' 87.5;
                 color: $color-white;
             }
         }
@@ -103,29 +101,25 @@
                 transform: translateY(50px);
                 flex-shrink: 0;
                 color: $color-primary;
-                font-family: 'Inconsolata', monospace;
+                font-family: 'InconsolataSemiCondensed', monospace;
                 font-weight: 400;
-                font-variation-settings: 'wdth' 87.5;
             }
             .count_info {
                 transform: translateY(50px);
                 .info_tit {
                     display: block;
                     font-size: 40px;
-                    font-family: 'Inconsolata', monospace;
-                    font-weight: 800;
-                    font-variation-settings: 'wdth' 87.5;
+                    font-family: 'InconsolataSemiCondensed', monospace;
+                    font-weight: 900;
                     line-height: 1;
                     color: $color-primary;
                 }
                 .info_txt {
                     display: block;
                     margin-top: 30px;
-                    // max-width: 768px;
                     font-size: 24px;
-                    font-family: 'Inconsolata', monospace;
+                    font-family: 'InconsolataSemiCondensed', monospace;
                     font-weight: 400;
-                    font-variation-settings: 'wdth' 87.5;
                     color: $color-primary;
                 }
             }

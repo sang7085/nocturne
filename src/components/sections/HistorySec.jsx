@@ -3,89 +3,55 @@ import { gsap } from "gsap";
 import { CountUp } from "countup.js";
 
 export default function HistorySec({ Loading, loopY }) {
-const countRef1 = useRef(null);
-const countRef2 = useRef(null);
-const countRef3 = useRef(null);
-const countRef4 = useRef(null);
-const once = useRef({ 
-    title: false,
-    slogan: false,
-    count1: false,
-    count2: false,
-    count3: false,
-    count4: false,
- });
- useEffect(() => {
+  const once = useRef({});
+  const onceTxt1 = useRef(false);
+  const onceTxt2 = useRef(false);
+  useEffect(() => {
      if(!Loading) {
+         const gap = 400;
+         const reset = 100;
          const baseOffset = document.querySelector(".history_sec").offsetTop;
          const element1 = document.querySelector(".history_tit").offsetTop;
          const element2 = document.querySelector(".history_slogan").offsetTop;
          const countLists = document.querySelectorAll(".count_list");
-         const countList1 = countLists[0].offsetTop;
-         const countList2 = countLists[1].offsetTop;
-         const countList3 = countLists[2].offsetTop;
-         const countList4 = countLists[3].offsetTop;
-        if(!once.title) {
-            gsap.set(".per20", {
-                xPercent: 20,
+         countLists.forEach((el, i) => {
+           const countListTop = el.offsetTop;
+           const targets = [482, 8, 74, 325];
+           const countNum = el.querySelector(".count_num");
+           
+           // 모션 초기화
+           if (loopY < reset) {
+             console.log("fsdfds");
+              gsap.set(".slide_title", {opacity: 0,});
+              gsap.set(".per20", {xPercent: 20});
+              gsap.set(".history_slogan span", {opacity: 0});
+              gsap.set(el, {xPercent: 100,});
+              once.current[`count${i}`] = false;
+              onceTxt1.current = false;
+              onceTxt2.current = false;
+          }
+
+          // loopY때문에 재렌더링 되어 카운트 무한실행 방지
+          if (loopY > baseOffset + countListTop && !once.current[`count${i}`]) {
+            once.current[`count${i}`] = true;
+            gsap.to(el, {xPercent: 0, duration: .6});
+            const counter = new CountUp(countNum, targets[i], {
+              duration: 1.5,
+              useEasing: true,
             });
-        }
-        if(!once.count1 && !once.count2 && !once.count3 && !once.count4) {
-            countLists.forEach((el) => {
-            gsap.set(el, {
-                xPercent: 100,
-            })
-        })
-        }
+            counter.start();
+          }
+        });
         // 섹션 - 섹션 1/4 + 요소 offsetTop 값
-        if (loopY > baseOffset - baseOffset / 4 + element1 && !once.title) {
-            once.title = true;
+        if (loopY > baseOffset - gap + element1 && !onceTxt1.current) {
+            onceTxt1.current = true;
             gsap.to(".slide_title", {stagger: .2, opacity: 1,});
             gsap.to(".per20", {xPercent: 0, duration: .6,});
         }
         
-        if (loopY > baseOffset - baseOffset / 4 + element2 && !once.slogan) {
-            once.slogan = true;
+        if (loopY > baseOffset - gap + element2 && !onceTxt2.current) {
+            onceTxt2.current = true;
             gsap.to(".history_slogan span", {opacity: 1});
-        }
-        
-        // count area start -------------------------------------------------------
-        if (loopY > baseOffset + countList1 && !once.count1) {
-            console.log("1");
-            gsap.to(countLists[0], {xPercent: 0, duration: .6});
-            once.count1 = true;
-            const counter = new CountUp(countRef1.current, 482, {
-                duration: 1.5,
-                useEasing: true,
-              });
-            counter.start();
-        }
-        if (loopY > baseOffset + countList2 && !once.count2) {
-            gsap.to(countLists[1], {xPercent: 0, duration: .6});
-            once.count2 = true; 
-            const counter = new CountUp(countRef2.current, 8, {
-                duration: 1.5,
-                useEasing: true,
-            });
-            counter.start();
-        }
-        if (loopY > baseOffset + countList3 && !once.count3) {
-            gsap.to(countLists[2], {xPercent: 0, duration: .6});
-            once.count3 = true;
-            const counter = new CountUp(countRef3.current, 74, {
-                duration: 1.5,
-                useEasing: true,
-            });
-            counter.start();
-        }
-        if (loopY > baseOffset + countList4 && !once.count4) {
-            gsap.to(countLists[3], {xPercent: 0, duration: .6});
-            once.count4 = true;
-            const counter = new CountUp(countRef4.current, 325, {
-                duration: 1.5,
-                useEasing: true,
-            });
-            counter.start();
         }
     }
   }, [loopY])
@@ -110,7 +76,7 @@ const once = useRef({
                 </div>
                 <ul className="count_area">
                     <li className="count_list full">
-                        <p className="count_num hunds_place"><span ref={countRef1}>0</span></p>
+                        <p className="count_num hunds_place"><span>0</span></p>
                         <p className="count_date">2025-TODAY</p>
                         <p className="count_info">
                             <span className="info_tit">Matches Played</span>
@@ -119,7 +85,7 @@ const once = useRef({
                         </p>
                     </li>
                     <li className="count_list">
-                        <p className="count_num ones_place"><span ref={countRef2}>0</span></p>
+                        <p className="count_num ones_place"><span>0</span></p>
                         <p className="count_date">2025-TODAY</p>
                         <p className="count_info">
                             <span className="info_tit">Championships Won</span>
@@ -129,7 +95,7 @@ const once = useRef({
                         <div className="icon bottom-left"></div>
                     </li>
                     <li className="count_list">
-                        <p className="count_num tens_place"><span ref={countRef3}>0</span></p>
+                        <p className="count_num tens_place"><span>0</span></p>
                         <p className="count_date">2025-TODAY</p>
                         <p className="count_info">
                             <span className="info_tit">Champions Utilized</span>
@@ -139,7 +105,7 @@ const once = useRef({
                         <div className="icon bottom-left"></div>
                     </li>
                     <li className="count_list">
-                        <p className="count_num hunds_place"><span ref={countRef4}>0</span></p>
+                        <p className="count_num hunds_place"><span>0</span></p>
                         <p className="count_date">2025-TODAY</p>
                         <p className="count_info">
                             <span className="info_tit">Victories Secured</span>

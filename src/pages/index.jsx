@@ -2,12 +2,14 @@ import { useEffect, useState, useRef, createContext, useContext } from "react";
 import Loading from "@/components/layout/Loading";
 import Header from "@/components/layout/Header";
 import InfiniteScrollTest from "@/components/sections/InfiniteScrollTest";
+import FirstSecClone from "@/components/sections/FirstSecClone";
 import VisualSec from "@/components/sections/VisualSec";
 import AchieveSec from "@/components/sections/AchieveSec";
 import HistorySec from "@/components/sections/HistorySec";
 import GallerySec from "@/components/sections/GallerySec";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import MatchesSec from "@/components/sections/FirstSecClone";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
@@ -82,12 +84,13 @@ export default function Home() {
       <main className={isMobile ? "mobile" : "pc"}>
         <div ref={trackRef}>
           {!isMobile && (
-            <GallerySec loading={loading} loopY={loopY} />
+            <FirstSecClone loading={loading} loopY={loopY} />
           )}
           <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} />
           <AchieveSec loading={loading} loopY={loopY} />
           <HistorySec loading={loading} loopY={loopY} />
           <GallerySec loading={loading} loopY={loopY} />
+          <MatchesSec />
           {!isMobile && (
             <VisualSec loading={loading} loopY={loopY} />
           )}

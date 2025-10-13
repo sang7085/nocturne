@@ -2,10 +2,9 @@
 @use "../abstracts/mixins" as *;
 @use "../abstracts/variables" as *;
 
-.gallery-sec {
+.gallery_sec {
     overflow: hidden;
     width: 100%;
-    height: 200vh;
     background-color: $color-primary;
     
     &::after {
@@ -25,5 +24,94 @@
         width: 100%;
         height: 472px;
         background: linear-gradient(0deg, #0D0D0D 0%, #ED0100 100%);
+    }
+    .inner {
+        margin-top: 330px;
+        z-index: 1;
+        .floating_img {
+            position: relative;
+            height: 2954px;
+            .floating_list {
+                position: absolute;
+                overflow: hidden;
+                max-width: 415px;
+
+                &:nth-child(1) {
+                  right: 0;
+                }
+
+                &:nth-child(2) {
+                  top: 208px;
+                  left: 0;
+                }
+
+                &:nth-child(3) {
+                  top: 736px;
+                  left: 647px;
+                }
+
+                &:nth-child(4) {
+                  top: 1112px;
+                  right: 0;
+                }
+
+                &:nth-child(5) {
+                  top: 1320px;
+                  left: 0;
+                }
+                
+                &:nth-child(6) {
+                  top: 1845px;
+                  left: 647px;
+                }
+                
+                .img_box {
+                 position: relative;
+                 z-index: 2;
+                }
+                .info {
+                    z-index: 1;
+                    position: relative;   
+                    margin-top: 15px;
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: 'Inconsolata SemiCondensed', monospace;
+                    font-size: 24px;
+                    text-transform: uppercase;
+                    color: $color-white;
+                    .tit {
+                        font-weight: 700;
+                    }
+                    .date {
+                        font-weight: 400;
+                        opacity: .5;
+                    }
+                }
+            }
+        }
+
+        .floating_txt {
+            z-index: $z-index-front;
+            position: absolute;
+            top: 172px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
+            text-transform: uppercase;
+            color: $color-white;
+
+            .sub_txt {
+              font-size: 28px;
+              font-weight: 600;
+            }
+            .tit {
+                margin-top: 10px;
+                font-family: "Anton", sans-serif;
+                font-size: 126px;
+                line-height: 1;
+                letter-spacing: 6px;
+            }
+        }
     }
 }

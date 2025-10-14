@@ -3,41 +3,33 @@ import { gsap } from "gsap";
 import Image from "next/image";
 
 
-export default function GallerySec({ Loading, loopY }) {
+export default function GallerySec({ loading, loopY }) {
   const once = useRef({});
-
   useEffect(() => {
-    if(!Loading) {
+    if(!loading) {
       const gallerySec = document.querySelector(".gallery_sec:not(.clone)");
       const gap = 400;
       const reset = 100;
-      const fixedGap = 172;
       const baseOffset = gallerySec.offsetTop;
       const floatingList = gallerySec.querySelectorAll(".floating_list");
-      const setFloatingY = gsap.quickSetter(".floating_txt", "y", "px");
       floatingList.forEach((el, i) => {
         const imgBox = el.querySelectorAll(".img_box");
-        const info = el.querySelectorAll(".info");
         const offset = el.offsetTop;
         
         if (loopY < reset) {
-          console.log("fsdfds");
           gsap.set(imgBox, {scale: 0,});
           once.current[`count${i}`] = false;
         }
-
+        
         if (loopY > baseOffset - gap + offset && !once.current[`count${i}`]) {
           once.current[`count${i}`] = true;
           gsap.to(imgBox, {scale: 1, duration: .6});
-        }
-        
-        // fixed txt
-        if(loopY > baseOffset + fixedGap) {
-          setFloatingY(loopY - baseOffset - fixedGap);
+          console.log("1")
         }
       });
     }
-  });
+  }, [loopY]);
+
   return(
       <>
         <section className="gallery_sec">
@@ -98,12 +90,12 @@ export default function GallerySec({ Loading, loopY }) {
                 </div>
               </div>
             </div>
-            <div className="floating_txt">
+            {/* <div className="floating_txt">
               <div className="tit_wrap">
                 <h3 className="sub_tit">[moment of nocturne]</h3>
                 <h2 className="tit">To inspire <br /> the best game in you</h2>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>  
       </>

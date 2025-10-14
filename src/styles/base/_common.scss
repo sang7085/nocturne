@@ -7,7 +7,7 @@ section {
 }
 
 .sec_tit {
-    padding-bottom: 52px;
+    margin-bottom: 52px;
     font-size: 28px;
     font-weight: 600;
     color: $color-primary;
@@ -105,4 +105,52 @@ main {
             right: 0;
         }
     }
+}
+
+.side_line {
+  .icon {
+    &.top-left {
+        top: -11px;
+        left: -11px;
+    }
+    &.top-right {
+        top: -11px;
+        right: -11px;
+    }
+    &.bottom-left {
+        bottom: -11px;
+        left: -11px;
+    }
+    &.bottom-right {
+        bottom: -11px;
+        right: -11px;
+    }
+}
+}
+
+button {
+  .icon_con {
+    position: relative;
+    overflow: hidden;
+    margin-left: 5px;
+    width: 36px;
+    height: 38px;
+    .icon_wrap {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transform: translateX(-50%);
+      transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1);
+      span {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background: url("../../../public/images/icon-arrow-red.svg") no-repeat 0 / cover;
+        
+        & + span {
+          background: url("../../../public/images/icon-arrow-white.svg") no-repeat 0 / cover;
+        }
+      } 
+    }
+  }
 }

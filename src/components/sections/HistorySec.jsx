@@ -21,7 +21,6 @@ export default function HistorySec({ Loading, loopY }) {
            
            // 모션 초기화
            if (loopY < reset) {
-             console.log("fsdfds");
               gsap.set(".slide_title", {opacity: 0,});
               gsap.set(".per20", {xPercent: 20});
               gsap.set(".history_slogan span", {opacity: 0});

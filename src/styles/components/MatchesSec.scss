@@ -3,7 +3,7 @@
 @use "../abstracts/variables" as *;
 
 .matches_sec {
-    padding-top: 100px;
+    padding: 100px 0 260px;
     width: 100%;
     background-color: #0D0D0D;
 
@@ -12,9 +12,10 @@
             display: flex;
             gap: 30px;
             .left {
-              width: calc(50%);
+              width: 50%;
                 .wide-ticket {
                     padding: 50px;
+                    height: 100%;
                     background-color: $color-primary;
                     .tit {
                       font-size: 240px;
@@ -32,10 +33,6 @@
                         font-size: 40px;
                         line-height: 1;
                         color: $color-white;
-                        .date {
-                        }
-                        .time {
-                        }
                       }
                       .other {
                         font-size: 68px;
@@ -60,9 +57,9 @@
                       }
                     }
                     .btn_wrap {
-                      margin-top: 35px;
+                      margin-top: 47px;
                       text-align: center;
-                      .btn {
+                      .btn_wide {
                         padding: 14px 0;
                         display: flex;
                         align-items: center;
@@ -71,26 +68,106 @@
                         text-align: center;
                         font-size: 28px;
                         font-family: 'Inconsolata SemiCondensed', monospace;
+                        font-weight: 600;
                         background-color: $color-primary;
                         color: $color-white;
                         border: 1px solid $color-white;
+                        transition: color .3s cubic-bezier(0.25, 1, 0.5, 1), background-color .3s cubic-bezier(0.25, 1, 0.5, 1);
 
-                        & + .btn {
+                        &:hover {
+                          background-color: $color-white;
+                          color: $color-primary;
+                          transition: color .3s cubic-bezier(0.25, 1, 0.5, 1), background-color .3s cubic-bezier(0.25, 1, 0.5, 1);
+                          .icon_con {
+                            .icon_wrap {
+                              transform: translateX(0);
+                              transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1);
+                            }
+                          }
+                        }
+
+                        & + .btn_wide {
                           margin-top: 8px;
                         }
-                        
-                        span {
-                          margin-left: 5px;
-                          display: inline-block;
-                          width: 36px;
-                          height: 38px;
-                          background: url("../../../public/images/icon-arrow-white.png") no-repeat;
-                        } 
                       }
                     }
                 }
             }
-            .right {}
+            .right {
+              width: 50%;
+              .ticket {
+                position: relative;
+                border: 1px solid $color-primary-half;
+                
+                & + .ticket {
+                  margin-top: 34px;
+                }
+
+                .ticket_area {
+                  display: flex;
+                  justify-content: space-between;
+                  min-height: 276px;
+
+                  .info {
+                    padding: 60px 0 60px 40px;
+                    .date {
+                      font-size: 56px;
+                      font-family: "Anton", sans-serif;
+                      line-height: 1;
+                      color: $color-primary;
+                      span {
+                        margin-left: 16px;
+                        font-size: 28px;
+                      }
+                    }
+                    .other {
+                      margin-top: 20px;
+                      font-size: 35px;
+                      font-family: "Anton", sans-serif;
+                      line-height: 1;
+                      text-decoration: underline;
+                      color: $color-white;
+                      span {
+                        margin-left: 13px;
+                        display: inline-block;
+                        font-size: 42px;
+                        text-decoration: unset;
+                      }
+                    }
+                  }
+                  .btn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 160px;
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: $color-white;
+                    background-color: $color-primary;
+                    transition: color .3s cubic-bezier(0.25, 1, 0.5, 1), background-color .3s cubic-bezier(0.25, 1, 0.5, 1);
+                    &:hover {
+                      background-color: $color-white;
+                      color: $color-primary;
+                      transition: color .3s cubic-bezier(0.25, 1, 0.5, 1), background-color .3s cubic-bezier(0.25, 1, 0.5, 1);
+                      .icon_con {
+                        .icon_wrap {
+                          transform: translateX(0);
+                          transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1);
+                        }
+                      }
+                    }
+                    .icon_con {
+                      width: 19px;
+                      height: 19px;
+                      .icon_wrap {
+                        transform: translateX(-50%);
+                        transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1);
+                      }
+                    }
+                  }
+                }
+              }
+            }
         }
     }
 }

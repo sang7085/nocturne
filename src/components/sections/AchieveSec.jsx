@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-export default function AchieveSec({ Loading, loopY }) {
+export default function AchieveSec({ loading, loopY }) {
 
   useEffect(() => {
-    if(!Loading) {
+    if(!loading) {
       const gap = 400;
       const baseOffset = document.querySelector(".achieve-sec").offsetTop;
       if (loopY > baseOffset - gap) {

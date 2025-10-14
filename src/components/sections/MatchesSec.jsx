@@ -13,7 +13,7 @@ export default function MatchesSec({ loading, loopY }) {
       <>
         <section className="matches_sec">
           <div className="inner">
-            <h3 className="sec_tit">MATCHES</h3>
+            <h3 className="sec_tit">[MATCHES]</h3>
             <div className="ticket_wrap">
               <div className="left">
                 <div className="wide-ticket">

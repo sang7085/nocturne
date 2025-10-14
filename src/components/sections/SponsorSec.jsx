@@ -20,7 +20,7 @@ export default function SponsorSec({ loading, loopY }) {
         <section className="sponsor_sec">
           <div className="inner">
             <div className="tit_wrap">
-              <h3 className="sec_tit">SPONSOR</h3>
+              <h3 className="sec_tit">[SPONSOR]</h3>
               <div className="slogan">
                 <p>
                   Beyond the stage, bonds are forged. <br />

@@ -20,11 +20,10 @@ export default function GallerySec({ loading, loopY }) {
           gsap.set(imgBox, {scale: 0,});
           once.current[`count${i}`] = false;
         }
-        
+
         if (loopY > baseOffset - gap + offset && !once.current[`count${i}`]) {
           once.current[`count${i}`] = true;
           gsap.to(imgBox, {scale: 1, duration: .6});
-          console.log("1")
         }
       });
     }

@@ -9,6 +9,7 @@ import HistorySec from "@/components/sections/HistorySec";
 import GallerySec from "@/components/sections/GallerySec";
 import MatchesSec from "@/components/sections/MatchesSec";
 import SponsorSec from "@/components/sections/SponsorSec";
+import ContentSec from "@/components/sections/ContentsSec";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -87,7 +88,7 @@ export default function Home() {
       <main className={isMobile ? "mobile" : "pc"}>
         <div ref={trackRef}>
           {!isMobile && (
-            <SponsorSec loading={loading} loopY={loopY} />
+            <ContentSec loading={loading} loopY={loopY} />
           )}
           <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} />
           <AchieveSec loading={loading} loopY={loopY} />
@@ -95,6 +96,7 @@ export default function Home() {
           <GallerySec loading={loading} loopY={loopY} />
           <MatchesSec />
           <SponsorSec loading={loading} loopY={loopY} />
+          <ContentSec loading={loading} loopY={loopY} />
           {!isMobile && (
             <VisualSec loading={loading} loopY={loopY} />
           )}

@@ -3,11 +3,10 @@ import { gsap } from "gsap";
 import Link from "next/link";
 
 
-export default function ContentSec({ loading, loopY }) {
+export default function ContentSec({ Loading, loopY }) {
   
   const handleEnter = (e) => {
     const el = e.currentTarget;
-    console.log("hover함");
     el.classList.remove("active-up", "active-down");
   };
 
@@ -17,18 +16,19 @@ export default function ContentSec({ loading, loopY }) {
     const centerY = rect.top + rect.height / 2;
 
     if (e.clientY < centerY) {
-      console.log("⬆️ 위로 나감");
       el.classList.add("active-up");
     } else {
-      console.log("⬇️ 아래로 나감");
       el.classList.add("active-down");
     }
 
   };
 
   useEffect(() => {
-    if(!loading) {
-
+    if(!Loading) {
+      const conList = document.querySelectorAll(".content_list");
+      conList.forEach((el, i) => {
+        console.log(i)
+      })
     }
   }, [])
 

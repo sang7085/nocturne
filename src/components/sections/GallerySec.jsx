@@ -3,15 +3,25 @@ import { gsap } from "gsap";
 import Image from "next/image";
 
 
-export default function GallerySec({ loading, loopY }) {
+export default function GallerySec({ Loading, loopY }) {
   const once = useRef({});
   useEffect(() => {
-    if(!loading) {
+    if(!Loading) {
       const gallerySec = document.querySelector(".gallery_sec:not(.clone)");
       const gap = 400;
       const reset = 100;
       const baseOffset = gallerySec.offsetTop;
+      const sectionHeight = gallerySec.offsetHeight;
       const floatingList = gallerySec.querySelectorAll(".floating_list");
+      const floatingTxt = gallerySec.querySelector(".floating_txt");
+      const innerHeight = gallerySec.querySelector(".inner").offsetHeight - 472; // inner 안에서 움직이게 범위설정
+      
+      // floating txt
+      const pinStart = baseOffset + 172;
+      const pinEnd = baseOffset + 172 + innerHeight;
+      const progress = gsap.utils.clamp(0, 1, (loopY - pinStart) / (pinEnd - pinStart));
+      console.log(progress)
+
       floatingList.forEach((el, i) => {
         const imgBox = el.querySelectorAll(".img_box");
         const offset = el.offsetTop;
@@ -24,6 +34,13 @@ export default function GallerySec({ loading, loopY }) {
         if (loopY > baseOffset - gap + offset && !once.current[`count${i}`]) {
           once.current[`count${i}`] = true;
           gsap.to(imgBox, {scale: 1, duration: .6});
+        }
+
+        if (progress > 0 && progress < 1) {
+          // loopY에 비례해서 따라가는 y값
+          const y = loopY - pinStart;
+    
+          gsap.set(floatingTxt, {y});
         }
       });
     }
@@ -89,12 +106,12 @@ export default function GallerySec({ loading, loopY }) {
                 </div>
               </div>
             </div>
-            {/* <div className="floating_txt">
+            <div className="floating_txt">
               <div className="tit_wrap">
                 <h3 className="sub_tit">[moment of nocturne]</h3>
                 <h2 className="tit">To inspire <br /> the best game in you</h2>
               </div>
-            </div> */}
+            </div>
           </div>
         </section>  
       </>

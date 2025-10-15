@@ -19,10 +19,9 @@ export default function MatchesSec({ loading, loopY }) {
       if(loopY > baseOffset - gap && !once.current) {
         typed.current = new Typed(el.current, {
           strings: ["[MATCHES]"],
-          typeSpeed: 50,
-          backSpeed: 25,
-          backDelay: 1500,
-          startDelay: 300,
+          typeSpeed: 30,
+          backDelay: 0,
+          startDelay: 0,
           showCursor: false,
         });
       }

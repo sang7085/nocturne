@@ -1,19 +1,49 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
-
+import Typed from "typed.js";
 
 export default function MatchesSec({ loading, loopY }) {
+  const el = useRef(null);
+  const typed = useRef(null);
+  const once = useRef(false);
+  
   useEffect(() => {
     if(!loading) {
+      const matchesSec = document.querySelector(".matches_sec");
+      const gapHalf = 200;
+      const gap = 400;
+      const reset = 100;
+      const baseOffset = matchesSec.offsetTop;
+      if(loopY > baseOffset - gap && !once.current) {
+        typed.current = new Typed(el.current, {
+          strings: ["[MATCHES]"],
+          typeSpeed: 50,
+          backSpeed: 25,
+          backDelay: 1500,
+          startDelay: 300,
+          showCursor: false,
+        });
+      }
+
+      if(loopY > baseOffset - gapHalf && !once.current) {
+        gsap.to(".ticket_wrap", {opacity: 1, y: 0});
+        once.current = true;
+      }
       
+      if (loopY < reset) {
+        typed.current?.destroy();
+        once.current = false;
+        gsap.set(".ticket_wrap", {opacity: 0, y: 100})
+      }
     }
-  }, []);
+  }, [loopY]);
   return(
       <>
         <section className="matches_sec">
           <div className="inner">
-            <h3 className="sec_tit">[MATCHES]</h3>
+            <h3 className="sec_tit" ref={el}></h3>
             <div className="ticket_wrap">
               <div className="left">
                 <div className="wide-ticket">
@@ -81,10 +111,10 @@ export default function MatchesSec({ loading, loopY }) {
                   <div className="ticket_area">
                     <div className="info">
                       <div className="date">
-                        08.20 <span>14:00 UTC [HOME]</span>
+                        08.28 <span>14:00 UTC [HOME]</span>
                       </div>
                       <div className="other">
-                        VS <span>LEO</span>
+                        VS <span>RUK</span>
                       </div>
                     </div>
                     <button className="btn icon">
@@ -108,10 +138,10 @@ export default function MatchesSec({ loading, loopY }) {
                   <div className="ticket_area">
                     <div className="info">
                       <div className="date">
-                        08.20 <span>14:00 UTC [HOME]</span>
+                        09.05 <span>14:00 UTC [HOME]</span>
                       </div>
                       <div className="other">
-                        VS <span>LEO</span>
+                        VS <span>NAR</span>
                       </div>
                     </div>
                     <button className="btn icon">

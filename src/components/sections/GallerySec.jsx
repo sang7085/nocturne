@@ -56,8 +56,8 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
                   <Image src="/images/img-gallery02.jpg" alt="gallery 이미지2" width="415" height="415" />
                 </div>
                 <div className="info">
-                  <p className="tit">Victory</p>
-                  <p className="date">2024</p>
+                  <p className="tit">Triumph</p>
+                  <p className="date">2020</p>
                 </div>
               </div>
               <div className="floating_list">
@@ -65,8 +65,8 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
                   <Image src="/images/img-gallery03.jpg" alt="gallery 이미지2" width="415" height="415" />
                 </div>
                 <div className="info">
-                  <p className="tit">Victory</p>
-                  <p className="date">2024</p>
+                  <p className="tit">Champion</p>
+                  <p className="date">2021</p>
                 </div>
               </div>
               <div className="floating_list">
@@ -74,8 +74,8 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
                   <Image src="/images/img-gallery04.jpg" alt="gallery 이미지2" width="415" height="415" />
                 </div>
                 <div className="info">
-                  <p className="tit">Victory</p>
-                  <p className="date">2024</p>
+                  <p className="tit">Glory</p>
+                  <p className="date">2023</p>
                 </div>
               </div>
               <div className="floating_list">
@@ -83,8 +83,8 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
                   <Image src="/images/img-gallery05.jpg" alt="gallery 이미지2" width="415" height="415" />
                 </div>
                 <div className="info">
-                  <p className="tit">Victory</p>
-                  <p className="date">2024</p>
+                  <p className="tit">Match</p>
+                  <p className="date">2022</p>
                 </div>
               </div>
               <div className="floating_list">
@@ -92,8 +92,8 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
                   <Image src="/images/img-gallery06.jpg" alt="gallery 이미지2" width="415" height="415" />
                 </div>
                 <div className="info">
-                  <p className="tit">Victory</p>
-                  <p className="date">2024</p>
+                  <p className="tit">Summit</p>
+                  <p className="date">2025</p>
                 </div>
               </div>
             </div>

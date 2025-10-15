@@ -9,8 +9,10 @@
 
     .inner {
         .ticket_wrap {
+            transform: translateY(100px);
             display: flex;
             gap: 30px;
+            opacity: 0;
             .left {
               width: 50%;
                 .wide-ticket {

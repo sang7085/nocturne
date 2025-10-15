@@ -27,7 +27,7 @@ export default function ContentSec({ Loading, loopY }) {
     if(!Loading) {
       const conList = document.querySelectorAll(".content_list");
       conList.forEach((el, i) => {
-        console.log(i)
+        // console.log(i)
       })
     }
   }, [])

@@ -23,28 +23,15 @@ export default function Home() {
   const [firstOffset, setFirstOffset] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [galleryProgress, setGalleryProgress] = useState(0);
-  console.log(galleryProgress)
+  // console.log(galleryProgress)
 
   useEffect(() => {
-    if(galleryProgress > 0) {
-      gsap.to(".floating_txt2", {
-        zIndex: 9999,
-        opacity: 1,
-      });
+    if (galleryProgress > 0 && galleryProgress < 1) {
+      gsap.to(".floating_txt2", { zIndex: 9999, opacity: 1, duration: .6 });
     } else {
-      gsap.to(".floating_txt2", {
-        zIndex: -1,
-        opacity: 0,
-      });
+      gsap.to(".floating_txt2", { zIndex: -1, opacity: 0, duration: .6 });
     }
-
-    if(galleryProgress === 1) {
-      gsap.to(".floating_txt2", {
-        zIndex: -1,
-        opacity: 0,
-      });
-    }
-  }, [galleryProgress])
+  }, [galleryProgress]);
   
   useEffect(() => {
     const checkMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -123,7 +110,7 @@ export default function Home() {
           <AchieveSec loading={loading} loopY={loopY} />
           <HistorySec loading={loading} loopY={loopY} />
           <GallerySec loading={loading} loopY={loopY} galleryProgress={setGalleryProgress} />
-          <MatchesSec />
+          <MatchesSec loading={loading} loopY={loopY} />
           <SponsorSec loading={loading} loopY={loopY} />
           <ContentSec loading={loading} loopY={loopY} />
           {!isMobile && (

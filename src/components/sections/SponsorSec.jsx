@@ -7,6 +7,8 @@ export default function SponsorSec({ loading, loopY }) {
   useEffect(() => {
     if(!loading) {
       const sponsorSec = document.querySelector(".sponsor_sec:not(.clone)");
+      const slogan = sponsorSec.querySelector(".slogan");
+      const path = sponsorSec.querySelectorAll(".path");
       const baseOffset = sponsorSec.offsetTop;
       const gap = 400;
       const reset = 100;
@@ -15,12 +17,18 @@ export default function SponsorSec({ loading, loopY }) {
       if(loopY > baseOffset - gap && !once.current) {
         gsap.to(".slogan", {opacity: 1, y: 0});
         gsap.to(".sec_tit", {opacity: 1, y: 0});
+        path.forEach((el) => {
+          el.classList.add("path-active");
+        })
         once.current = true;
       }
       
       if (loopY < reset) {
         gsap.set(".slogan", {opacity: 0, y: 100});
         gsap.set(".sec_tit", {opacity: 0, y: 100});
+        path.forEach((el) => {
+          el.classList.remove("path-active");
+        });
         once.current = false;
       }
     }
@@ -47,111 +55,142 @@ export default function SponsorSec({ loading, loopY }) {
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo01.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical left"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
               <div className="spon_list">
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo02.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
               <div className="spon_list">
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo03.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
               <div className="spon_list">
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo04.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
               <div className="spon_list">
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo01.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
               <div className="spon_list">
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo01.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
               <div className="spon_list">
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo01.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
               <div className="spon_list">
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo01.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
               <div className="spon_list">
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo01.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
               <div className="spon_list">
                 <div className="img_box">
                   <img src="/images/img-sponsor-logo01.png" alt="" />
                 </div>
-                <div className="side_line">
-                  <div className="icon-line icon top-left"></div>
-                  <div className="icon-line icon top-right"></div>
-                  <div className="icon-line icon bottom-left"></div>
-                  <div className="icon-line icon bottom-right"></div>
-                </div>
+                <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical right"></div>
+                    <div className="icon-line icon top-left"></div>
+                    <div className="icon-line icon top-right"></div>
+                    <div className="icon-line icon bottom-left"></div>
+                    <div className="icon-line icon bottom-right"></div>
+                  </div>
               </div>
             </div>
           </div>

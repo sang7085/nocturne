@@ -24,9 +24,12 @@ export default function MatchesSec({ loading, loopY }) {
       }
       
       if (loopY < reset) {
-        once.current = false;
         gsap.set(".ticket_wrap", {opacity: 0, y: 100})
         gsap.set(".sec_tit", {opacity: 0, y: 100});
+        path.forEach((el) => {
+          el.classList.remove("path-active");
+        });
+        once.current = false;
       }
     }
   }, [loopY]);
@@ -37,7 +40,7 @@ export default function MatchesSec({ loading, loopY }) {
           <div className="inner">
             <h3 className="sec_tit">[MATCHES]</h3>
             <div className="ticket_wrap">
-              <div className="left">
+              <div className="left_area">
                 <div className="wide-ticket">
                   <div className="tit">MATCH<br/>DAY</div>
                   <div className="date_wrap">
@@ -71,7 +74,7 @@ export default function MatchesSec({ loading, loopY }) {
                   </div>
                 </div>
               </div>
-              <div className="right">
+              <div className="right_area">
                 <div className="ticket">
                   <div className="ticket_area">
                     <div className="info">
@@ -95,6 +98,8 @@ export default function MatchesSec({ loading, loopY }) {
                   <div className="side_line path">
                     <div className="icon-line top"></div>
                     <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical left"></div>
+                    <div className="icon-line vertical right"></div>
                     <div className="icon-line icon top-left"></div>
                     <div className="icon-line icon top-right"></div>
                     <div className="icon-line icon bottom-left"></div>
@@ -124,6 +129,8 @@ export default function MatchesSec({ loading, loopY }) {
                   <div className="side_line path">
                     <div className="icon-line top"></div>
                     <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical left"></div>
+                    <div className="icon-line vertical right"></div>
                     <div className="icon-line icon top-left"></div>
                     <div className="icon-line icon top-right"></div>
                     <div className="icon-line icon bottom-left"></div>
@@ -153,6 +160,8 @@ export default function MatchesSec({ loading, loopY }) {
                   <div className="side_line path">
                     <div className="icon-line top"></div>
                     <div className="icon-line bottom"></div>
+                    <div className="icon-line vertical left"></div>
+                    <div className="icon-line vertical right"></div>
                     <div className="icon-line icon top-left"></div>
                     <div className="icon-line icon top-right"></div>
                     <div className="icon-line icon bottom-left"></div>

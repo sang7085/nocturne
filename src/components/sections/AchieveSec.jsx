@@ -2,17 +2,29 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 export default function AchieveSec({ loading, loopY }) {
-
+  const once = useRef(false);
   useEffect(() => {
     if(!loading) {
       const achieveSec = document.querySelector(".achieve_sec");
       const gap = 400;
+      const reset = 100;
       const baseOffset = achieveSec.offsetTop;
       const path = achieveSec.querySelector(".path");
+      gsap.set(".left-wall", {xPercent: 0});
+      gsap.set(".right-wall", {xPercent: 0});
+
       if (loopY > baseOffset - gap) {
         gsap.to(".left-wall", {xPercent: -100, duration: 1,});
         gsap.to(".right-wall", {xPercent: 100, duration: 1,});
         path.classList.add("path-active");
+        once.current = true;
+      }
+      
+      if (loopY < reset) {
+        gsap.set(".left-wall", {xPercent: 0});
+        gsap.set(".right-wall", {xPercent: 0});
+        path.classList.remove("path-active");
+        once.current = false;
       }
   }
   }, [loopY]);

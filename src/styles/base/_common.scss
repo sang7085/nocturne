@@ -53,18 +53,22 @@ main {
     &.vertical {
         width: 1px;
         height: 100%;
+      &.left {
+        top: 0;
+        left: 0;
+      }
+      &.right {
+        top: 0;
+        right: 0;
+      }
     }
     &.top {
         top: 0;
-    }
-    &.bottom {
-        bottom: 0;
-    }
-    &.left {
         left: 0;
-    }
-    &.right {
-        right: 0;
+      }
+      &.bottom {
+        bottom: 0;
+        left: 0;
     }
     &.icon {
         width: 21px;
@@ -127,6 +131,11 @@ main {
       clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
       transition: clip-path .6s cubic-bezier(.4, 0, .2, 1);
     }
+    &.left,
+    &.right {
+      clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+      transition: clip-path .6s cubic-bezier(.4, 0, .2, 1);
+    }
     &.icon {
       opacity: 0;
       transform: rotate(180deg);
@@ -138,6 +147,10 @@ main {
     .icon-line {
       &.top,
       &.bottom {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+      &.left,
+      &.right {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       }
       &.icon {

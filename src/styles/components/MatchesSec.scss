@@ -13,7 +13,7 @@
             display: flex;
             gap: 30px;
             opacity: 0;
-            .left {
+            .left_area {
               width: 50%;
                 .wide-ticket {
                     padding: 50px;
@@ -95,11 +95,10 @@
                     }
                 }
             }
-            .right {
+            .right_area {
               width: 50%;
               .ticket {
                 position: relative;
-                border: 1px solid $color-primary-half;
                 
                 & + .ticket {
                   margin-top: 34px;

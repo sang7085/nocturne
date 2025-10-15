@@ -28,14 +28,21 @@ export default function Home() {
   useEffect(() => {
     if(galleryProgress > 0) {
       gsap.to(".floating_txt2", {
+        zIndex: 9999,
         opacity: 1,
-      })
-    } 
-    
+      });
+    } else {
+      gsap.to(".floating_txt2", {
+        zIndex: -1,
+        opacity: 0,
+      });
+    }
+
     if(galleryProgress === 1) {
       gsap.to(".floating_txt2", {
+        zIndex: -1,
         opacity: 0,
-      })
+      });
     }
   }, [galleryProgress])
   

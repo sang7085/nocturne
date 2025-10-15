@@ -154,3 +154,30 @@ button {
     }
   }
 }
+
+.floating_txt2 {
+    z-index: $z-index-front;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: $color-white;
+    will-change: opacity;
+    opacity: 0;
+
+    .sub_txt {
+      font-size: 28px;
+      font-weight: 600;
+    }
+    .tit {
+        margin-top: 10px;
+        font-family: "Anton", sans-serif;
+        font-size: 126px;
+        line-height: 1;
+        letter-spacing: 6px;
+    }
+}

@@ -22,6 +22,22 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [firstOffset, setFirstOffset] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [galleryProgress, setGalleryProgress] = useState(0);
+  console.log(galleryProgress)
+
+  useEffect(() => {
+    if(galleryProgress > 0) {
+      gsap.to(".floating_txt2", {
+        opacity: 1,
+      })
+    } 
+    
+    if(galleryProgress === 1) {
+      gsap.to(".floating_txt2", {
+        opacity: 0,
+      })
+    }
+  }, [galleryProgress])
   
   useEffect(() => {
     const checkMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -85,6 +101,12 @@ export default function Home() {
     <>
       <Loading setLoading={setLoading} loading={loading} />
       <Header />
+      <div className="floating_txt2">
+        <div className="tit_wrap">
+          <h3 className="sub_tit">[moment of nocturne]</h3>
+          <h2 className="tit">To inspire <br /> the best game in you</h2>
+        </div>
+      </div>
       <main className={isMobile ? "mobile" : "pc"}>
         <div ref={trackRef}>
           {!isMobile && (
@@ -93,7 +115,7 @@ export default function Home() {
           <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} />
           <AchieveSec loading={loading} loopY={loopY} />
           <HistorySec loading={loading} loopY={loopY} />
-          <GallerySec loading={loading} loopY={loopY} />
+          <GallerySec loading={loading} loopY={loopY} galleryProgress={setGalleryProgress} />
           <MatchesSec />
           <SponsorSec loading={loading} loopY={loopY} />
           <ContentSec loading={loading} loopY={loopY} />

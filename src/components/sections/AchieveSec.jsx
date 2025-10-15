@@ -5,21 +5,24 @@ export default function AchieveSec({ loading, loopY }) {
 
   useEffect(() => {
     if(!loading) {
+      const achieveSec = document.querySelector(".achieve_sec");
       const gap = 400;
-      const baseOffset = document.querySelector(".achieve-sec").offsetTop;
+      const baseOffset = achieveSec.offsetTop;
+      const path = achieveSec.querySelector(".path");
       if (loopY > baseOffset - gap) {
         gsap.to(".left-wall", {xPercent: -100, duration: 1,});
         gsap.to(".right-wall", {xPercent: 100, duration: 1,});
+        path.classList.add("path-active");
       }
   }
   }, [loopY]);
 
     return(
         <>
-          <section className="achieve-sec">
+          <section className="achieve_sec">
             <div className="inner">
               <div className="achieve-line-wrap short-line">
-                <div className="line-wrap">
+                <div className="line-wrap path">
                   <div className="icon-line top"></div>
                   <div className="icon-line bottom"></div>
                   <div className="icon-line icon top-left"></div>

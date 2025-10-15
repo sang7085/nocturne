@@ -9,6 +9,7 @@ export default function MatchesSec({ loading, loopY }) {
   useEffect(() => {
     if(!loading) {
       const matchesSec = document.querySelector(".matches_sec");
+      const path = matchesSec.querySelectorAll(".path");
       const gap = 400;
       const reset = 100;
       const baseOffset = matchesSec.offsetTop;
@@ -16,6 +17,9 @@ export default function MatchesSec({ loading, loopY }) {
       if(loopY > baseOffset - gap && !once.current) {
         gsap.to(".ticket_wrap", {opacity: 1, y: 0});
         gsap.to(".sec_tit", {opacity: 1, y: 0});
+        path.forEach((el) => {
+          el.classList.add("path-active");
+        })
         once.current = true;
       }
       
@@ -26,7 +30,7 @@ export default function MatchesSec({ loading, loopY }) {
       }
     }
   }, [loopY]);
-  
+
   return(
       <>
         <section className="matches_sec">
@@ -88,7 +92,9 @@ export default function MatchesSec({ loading, loopY }) {
                       </div>
                     </button>
                   </div>
-                  <div className="side_line">
+                  <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
                     <div className="icon-line icon top-left"></div>
                     <div className="icon-line icon top-right"></div>
                     <div className="icon-line icon bottom-left"></div>
@@ -115,7 +121,9 @@ export default function MatchesSec({ loading, loopY }) {
                       </div>
                     </button>
                   </div>
-                  <div className="side_line">
+                  <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
                     <div className="icon-line icon top-left"></div>
                     <div className="icon-line icon top-right"></div>
                     <div className="icon-line icon bottom-left"></div>
@@ -142,7 +150,9 @@ export default function MatchesSec({ loading, loopY }) {
                       </div>
                     </button>
                   </div>
-                  <div className="side_line">
+                  <div className="side_line path">
+                    <div className="icon-line top"></div>
+                    <div className="icon-line bottom"></div>
                     <div className="icon-line icon top-left"></div>
                     <div className="icon-line icon top-right"></div>
                     <div className="icon-line icon bottom-left"></div>

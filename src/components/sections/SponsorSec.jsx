@@ -15,7 +15,7 @@ export default function SponsorSec({ loading, loopY }) {
       const listWrap = sponsorSec.querySelector(".list_wrap");
 
       if(loopY > baseOffset - gap && !once.current) {
-        gsap.to(".slogan", {opacity: 1, y: 0});
+        gsap.to(slogan, {opacity: 1, y: 0});
         gsap.to(".sec_tit", {opacity: 1, y: 0});
         path.forEach((el) => {
           el.classList.add("path-active");
@@ -24,7 +24,7 @@ export default function SponsorSec({ loading, loopY }) {
       }
       
       if (loopY < reset) {
-        gsap.set(".slogan", {opacity: 0, y: 100});
+        gsap.set(slogan, {opacity: 0, y: 100});
         gsap.set(".sec_tit", {opacity: 0, y: 100});
         path.forEach((el) => {
           el.classList.remove("path-active");

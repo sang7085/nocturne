@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import Image from "next/image";
 
 export default function SponsorSec({ loading, loopY }) {
-  const once = useRef({});
+  const once = useRef(false);
   useEffect(() => {
     if(!loading) {
       const sponsorSec = document.querySelector(".sponsor_sec:not(.clone)");
@@ -11,10 +11,21 @@ export default function SponsorSec({ loading, loopY }) {
       const gap = 400;
       const reset = 100;
       const listWrap = sponsorSec.querySelector(".list_wrap");
-      const sponList = listWrap.querySelectorAll(".spon_list");
-      const sponLength = sponList.length;
+
+      if(loopY > baseOffset - gap && !once.current) {
+        gsap.to(".slogan", {opacity: 1, y: 0});
+        gsap.to(".sec_tit", {opacity: 1, y: 0});
+        once.current = true;
+      }
+      
+      if (loopY < reset) {
+        gsap.set(".slogan", {opacity: 0, y: 100});
+        gsap.set(".sec_tit", {opacity: 0, y: 100});
+        once.current = false;
+      }
     }
-  }, []);
+  }, [loopY]);
+
   return(
       <>
         <section className="sponsor_sec">

@@ -12,7 +12,7 @@ export default function AchieveSec({ loading, loopY }) {
         gsap.to(".right-wall", {xPercent: 100, duration: 1,});
       }
   }
-  }, [loopY])
+  }, [loopY]);
 
     return(
         <>

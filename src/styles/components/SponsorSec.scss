@@ -11,6 +11,8 @@
             display: flex;
             justify-content: space-between;
             .slogan {
+                opacity: 0;
+                transform: translateY(100px);
                 margin-right: 225px;
                 font-size: 40px;
                 color: $color-white;

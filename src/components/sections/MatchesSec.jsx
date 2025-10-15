@@ -9,6 +9,7 @@ export default function MatchesSec({ loading, loopY }) {
   useEffect(() => {
     if(!loading) {
       const matchesSec = document.querySelector(".matches_sec");
+      const secTit = matchesSec.querySelector(".sec_tit");
       const path = matchesSec.querySelectorAll(".path");
       const gap = 400;
       const reset = 100;
@@ -16,7 +17,7 @@ export default function MatchesSec({ loading, loopY }) {
 
       if(loopY > baseOffset - gap && !once.current) {
         gsap.to(".ticket_wrap", {opacity: 1, y: 0});
-        gsap.to(".sec_tit", {opacity: 1, y: 0});
+        gsap.to(secTit, {opacity: 1, y: 0});
         path.forEach((el) => {
           el.classList.add("path-active");
         })
@@ -25,7 +26,7 @@ export default function MatchesSec({ loading, loopY }) {
       
       if (loopY < reset) {
         gsap.set(".ticket_wrap", {opacity: 0, y: 100})
-        gsap.set(".sec_tit", {opacity: 0, y: 100});
+        gsap.set(secTit, {opacity: 0, y: 100});
         path.forEach((el) => {
           el.classList.remove("path-active");
         });

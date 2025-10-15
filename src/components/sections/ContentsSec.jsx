@@ -4,7 +4,7 @@ import Link from "next/link";
 
 
 export default function ContentSec({ Loading, loopY }) {
-  
+  const once = useRef(false);
   const handleEnter = (e) => {
     const el = e.currentTarget;
     el.classList.remove("active-up", "active-down");
@@ -26,9 +26,21 @@ export default function ContentSec({ Loading, loopY }) {
   useEffect(() => {
     if(!Loading) {
       const conList = document.querySelectorAll(".content_list");
-      conList.forEach((el, i) => {
-        // console.log(i)
-      })
+      const contentSec = document.querySelector(".contents_sec");
+      const secTit = contentSec.querySelector(".sec_tit");
+      const baseOffset = contentSec.offsetTop;
+      const gap = 400;
+      const reset = 100;
+
+      if(loopY > baseOffset - gap && !once.current) {
+        gsap.to(secTit, {opacity: 1, y: 0});
+        once.current = true;
+      }
+      
+      if (loopY < reset) {
+        gsap.set(secTit, {opacity: 0, y: 100});
+        once.current = false;
+      }
     }
   }, [])
 

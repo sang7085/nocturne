@@ -19,7 +19,13 @@ export default function Loading({setLoading, loading}) {
                 return prev + 1;
             })
         }, 30);
-    }, []);
+
+        if(!loading) {
+            setTimeout(() => {
+                document.querySelector(".loading-sec").classList.add("none");
+            }, 1000);
+        }
+    }, [loading]);
 
     function loadingImage(progress) {
         if (progress < 60) {

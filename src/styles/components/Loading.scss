@@ -22,6 +22,10 @@
         transition: visibility .6s ease, opacity .6s ease;
     }
 
+    &.none {
+        display: none;
+    }
+
     .loading-line-wrap {
         position: absolute;
         width: 100%;
@@ -93,4 +97,9 @@
         bottom: 32px;
         right: 65px;
     }
+}
+
+/* 2. 태블릿용 */
+@media (min-width: 768px) and (max-width: 1279px) {
+  
 }

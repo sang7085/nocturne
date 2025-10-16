@@ -33,3 +33,17 @@ header {
         }
     }
 }
+
+// 2. 태블릿용
+@media (min-width: 768px) and (max-width: 1279px) {
+  .gnb {
+    display: none;
+  }
+}
+
+// 3. 모바일용
+@media (max-width: 767px){
+  .gnb {
+    display: none;
+  }
+}

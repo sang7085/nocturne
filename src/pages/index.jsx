@@ -35,10 +35,9 @@ export default function Home() {
   }, [galleryProgress]);
   
   useEffect(() => {
-    const checkMobile = /Mobi|Android/i.test(navigator.userAgent);
-    setIsMobile(checkMobile);
-    if (checkMobile) {
-      alert("모바일입니다");
+
+    if (window.innerWidth <= 1279) {
+      setIsMobile(true);
       return;
     }
 

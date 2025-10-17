@@ -3,11 +3,20 @@
 @use "../abstracts/variables" as *;
 
 .visual-sec {
-    overflow: hidden;
+		position: relative;
+		overflow: hidden;
     width: 100%;
-    height: 100vh;
+		height: 150vh;
     background-color: $color-black;
-
+		border: 1px solid #ff0000;
+		.visual_fake {
+			padding-top: 50vh;
+			border: 1px solid blue;
+		}
+		.visual_wrap {
+			position: relative;
+			height: 100vh;
+		}
     .slogan {
         margin: 0 36px ;
         padding: 100px 0 0;
@@ -16,7 +25,7 @@
         .slogan-txt {
             display: inline-block;
             font-family: "Anton", sans-serif;
-            font-size: calc(421 / 1920 * 100vw);
+						font-size: ( 420 / 1920 ) * 100vw;
             line-height: 1;
             letter-spacing: -0.8vw;
             color: $color-primary;
@@ -28,7 +37,7 @@
         bottom: 16px;
         right: 60px;
         .txt {
-            font-size: 18px;
+            font-size: 1.8rem;
             font-weight: 700;
             color: $color-white;
         }
@@ -38,9 +47,10 @@
         bottom: 234px;
         left: 50px;
         .sub-desc {
-            font-weight: 700;
-            color: $color-white;
-            
+					font-size: 1.6rem;
+					font-weight: 700;
+					color: $color-white;
+					
             .highlight {
                 margin-right: 5px;
                 font-style: italic;
@@ -61,20 +71,30 @@
         top: 400px;
         right: 200px;
         p {
-            padding: 0 5px;
-            color: $color-primary;
-            background: #fff;
-            clip-path: inset(0 100% 0 0);
-            &:first-child {
-                display: inline-block;
-            }
+					padding: 0 5px;
+					color: $color-primary;
+					background: #fff;
+					clip-path: inset(0 100% 0 0);
+					font-size: 1.6rem;
+					&:first-child {
+						display: inline-block;
+					}
         }
     }
     .trophy {
         position: absolute;
-        
-        img {
-            width: 90%;
-        }
+				left: 50%;
+        max-width: 572px;
+        width: 100%;
     }
+}
+
+// 2. 태블릿용
+@media (min-width: 768px) and (max-width: 1279px) {
+
+}
+  
+// 3. 모바일용
+@media (max-width: 767px){
+	
 }

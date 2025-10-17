@@ -49,9 +49,11 @@ export default function Home() {
       const lenis = new Lenis();
       function raf(time) {
         lenis.raf(time);
+        ScrollTrigger.update();
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
+      
       if (trackRef.current) {
         cancelAnimationFrame(rafId);
         gsap.killTweensOf(trackRef.current);
@@ -64,7 +66,8 @@ export default function Home() {
       const sections = Array.from(track.querySelectorAll("section"));
       const heights = sections.slice(1, -1).map((s) => s.offsetHeight);
       const totalHeight = heights.reduce((a, b) => a + b, 0);
-      const firstCloneHeight = sections[0].offsetHeight;
+      const fakeVh = window.innerHeight / 2;
+      const firstCloneHeight = sections[0].offsetHeight + fakeVh;
       
       let scrollY = firstCloneHeight;
       let targetY = firstCloneHeight; 
@@ -134,8 +137,8 @@ export default function Home() {
             <FooterSec loading={loading} loopY={loopY} />
           )}
           <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} isMobile={isMobile} />
-          <AchieveSec loading={loading} loopY={loopY} />
-          <HistorySec loading={loading} loopY={loopY} />
+          <AchieveSec loading={loading} loopY={loopY} isMobile={isMobile} />
+          <HistorySec loading={loading} loopY={loopY} isMobile={isMobile} />
           <GallerySec loading={loading} loopY={loopY} galleryProgress={setGalleryProgress} />
           <MatchesSec loading={loading} loopY={loopY} />
           <SponsorSec loading={loading} loopY={loopY} />

@@ -15,7 +15,7 @@ header {
         height: 45px;
         
         .logo {
-            font-size: 30px;
+            font-size: 3rem;
             font-family: "Russo One", sans-serif;
         }
         .gnb {
@@ -43,7 +43,10 @@ header {
 
 // 3. 모바일용
 @media (max-width: 767px){
-  .gnb {
-    display: none;
+  header {
+    padding: 30px 40px 0;
+    .gnb {
+      display: none;
+    }
   }
 }

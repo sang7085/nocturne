@@ -3,9 +3,10 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-export default function VisualSec({ Loading, loopY }) {
-
+export default function VisualSec({ Loading, loopY, isMobile }) {
+    const once = useRef(null);
     useEffect(() => {
+        if (once.current) return;
         gsap.set(".slogan-txt", {
             yPercent: 100,
         });
@@ -21,8 +22,8 @@ export default function VisualSec({ Loading, loopY }) {
             xPercent: -50,
             yPercent: -50,
         });
-
         if(!Loading) {
+            // loading timeline
             const tl = gsap.timeline({
                 defaults: {
                     ease: "power3.out",
@@ -46,25 +47,36 @@ export default function VisualSec({ Loading, loopY }) {
                 yPercent: 0,
                 duration: 1,
             }, "-=.8");
+            once.current = true;
         }
       }, []);
 
 
       useEffect(() => {
-        // scrollTrigger 대용 패럴렉스
-        if(!Loading) {
-            const baseOffset = document.querySelector(".visual-sec").offsetTop;
-            const visualSecH = document.querySelector(".visual-sec").offsetHeight;
-            const relativeY = (loopY - visualSecH) * 0.1;
-            // if (loopY > baseOffset) {
-            //     gsap.to(".trophy", { y: relativeY });
-            //     gsap.to(".slogan-txt", { y: relativeY });
-            // } else {
-            //     gsap.to(".trophy", { y: relativeY });
-            //     gsap.to(".slogan-txt", { y: relativeY });
-            // }
+        if (!Loading) {
+          if(isMobile) {
+
+          } else {
+            const sec = document.querySelector(".visual-sec");
+            const baseOffset = sec.offsetTop;
+            const visualSecH = sec.offsetHeight;
+            const gap = 400;
+        
+            if (loopY >= baseOffset && loopY <= baseOffset + visualSecH) {
+              const progress = (loopY - baseOffset) / visualSecH;
+              const relativeY = progress * 100;
+              const relativeY2 = progress * 200;
+        
+              gsap.to(".trophy", { y: -relativeY, overwrite: "auto" });
+              gsap.to(".slogan-txt", { y: relativeY2, overwrite: "auto" });
+            } else {
+              // 범위 벗어나면 원상복귀
+              gsap.to(".trophy", { y: 0, overwrite: "auto" });
+              gsap.to(".slogan-txt", { y: 0, overwrite: "auto" });
+            }
+          }
         }
-      }, [loopY]);
+      }, [loopY, isMobile]);
 
     return (
         <>

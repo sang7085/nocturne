@@ -13,7 +13,14 @@ export default function SponsorSec({ loading, loopY }) {
       const baseOffset = sponsorSec.offsetTop;
       const gap = 400;
       const reset = 100;
-      const listWrap = sponsorSec.querySelector(".list_wrap");
+
+      // path.forEach((el) => {
+      //   if(loopY > baseOffset - gap && !once.current) {
+      //     el.classList.add("path-active");
+      //   } else {
+      //     el.classList.remove("path-active");
+      //   }
+      // })
 
       if(loopY > baseOffset - gap && !once.current) {
         gsap.to(slogan, {opacity: 1, y: 0});

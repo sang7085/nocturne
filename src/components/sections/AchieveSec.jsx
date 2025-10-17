@@ -26,7 +26,7 @@ export default function AchieveSec({ loading, loopY }) {
         path.classList.remove("path-active");
         once.current = false;
       }
-  }
+    }
   }, [loopY]);
 
     return(

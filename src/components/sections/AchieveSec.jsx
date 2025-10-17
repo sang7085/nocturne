@@ -14,7 +14,6 @@ export default function AchieveSec({ loading, loopY, isMobile }) {
         scrollTrigger: {
           trigger: ".achieve_sec",
           start: "top center",
-          markers: true,
           onUpdate() {
             path.classList.add("path-active");
           }
@@ -24,7 +23,7 @@ export default function AchieveSec({ loading, loopY, isMobile }) {
         xPercent: 100,
         scrollTrigger: {
           trigger: ".achieve_sec",
-          start: "top top",
+          start: "top center",
         }
       });
     } else {

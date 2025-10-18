@@ -31,8 +31,12 @@ export default function Home() {
     const handleResize = () => {
       if(window.innerWidth > 1279) {
         setIsMobile(false);
+        console.log("1")
+        ScrollTrigger.killAll()
+        ScrollTrigger.refresh()
       } else {
         setIsMobile(true);
+        console.log("2")
       }
     };
     handleResize();
@@ -53,7 +57,6 @@ export default function Home() {
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
-      
       if (trackRef.current) {
         cancelAnimationFrame(rafId);
         gsap.killTweensOf(trackRef.current);

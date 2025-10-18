@@ -60,8 +60,9 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
 
       useEffect(() => {
         if (!Loading) {
+            const visualFake = document.querySelector(".visual_fake");
           if(isMobile) {
-
+            visualFake.style.display = "none";
           } else {
             const sec = document.querySelector(".visual-sec");
             const baseOffset = sec.offsetTop;

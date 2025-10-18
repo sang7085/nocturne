@@ -69,17 +69,17 @@ export default function HistorySec({ Loading, loopY, isMobile }) {
 				ScrollTrigger.refresh();
 				
       } else {
-				gsap.set(".slide_title", { opacity: 0 });
-				gsap.set(".per20", { xPercent: 20 });
-				gsap.set(".history_slogan span", { opacity: 0 });
-        countLists.forEach((el, i) => {
-          const countListTop = el.offsetTop;
+				countLists.forEach((el, i) => {
+					const countListTop = el.offsetTop;
           const targets = [482, 8, 74, 325];
           const countNum = el.querySelector(".count_num");
-
+					
           // 모션 초기화
           if (loopY < reset) {
-            gsap.set(el, { xPercent: 100 });
+						gsap.set(".slide_title", { opacity: 0 });
+						gsap.set(".per20", { xPercent: 20 });
+						gsap.set(".history_slogan span", { opacity: 0 });
+						gsap.set(el, { xPercent: 100 });
             once.current[`count${i}`] = false;
             onceTxt1.current = false;
             onceTxt2.current = false;

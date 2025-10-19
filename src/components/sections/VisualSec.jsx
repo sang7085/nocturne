@@ -62,7 +62,7 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
         if (!Loading) {
             const visualFake = document.querySelector(".visual_fake");
           if(isMobile) {
-            visualFake.style.display = "none";
+            // visualFake.style.display = "none";
           } else {
             const sec = document.querySelector(".visual-sec");
             const baseOffset = sec.offsetTop;
@@ -102,7 +102,7 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
     return (
         <>
             <section className="visual-sec">
-                <div className="visual_fake"></div>
+                {/* <div className="visual_fake"></div> */}
                 <div className="visual_wrap">
                     <div className="slogan"><span className="slogan-txt">LIGHTTHEFIRE</span></div>
                     <div className="visual-desc">

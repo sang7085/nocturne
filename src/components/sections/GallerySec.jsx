@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 
-export default function GallerySec({ Loading, loopY, galleryProgress }) {
+export default function GallerySec({ Loading, loopY, galleryProgress, isMobile }) {
   const once = useRef({});
   useEffect(() => {
     if(!Loading) {
@@ -20,22 +22,37 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
       const progress = gsap.utils.clamp(0, 1, (loopY - pinStart) / (pinEnd - pinStart));
       galleryProgress(progress); // 부모에게 progress 진행도 전달
 
-      floatingList.forEach((el, i) => {
-        const imgBox = el.querySelectorAll(".img_box");
-        const offset = el.offsetTop;
-        
-        if (loopY < reset) {
-          gsap.set(imgBox, {scale: 0,});
-          once.current[`count${i}`] = false;
-        }
-
-        if (loopY > baseOffset - gap + offset && !once.current[`count${i}`]) {
-          once.current[`count${i}`] = true;
-          gsap.to(imgBox, {scale: 1, duration: .6});
-        } 
-      });
+      if(isMobile) {
+        floatingList.forEach((el, i) => {
+          gsap.to(el, {
+            scale: 1,
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              end: "bottom bottom",
+              markers: true,
+            }
+          })
+        });
+      } else {
+        floatingList.forEach((el, i) => {
+          const imgBox = el.querySelectorAll(".img_box");
+          const offset = el.offsetTop;
+          
+          if (loopY < reset) {
+            gsap.set(imgBox, {scale: 0,});
+            once.current[`count${i}`] = false;
+          }
+  
+          if (loopY > baseOffset - gap + offset && !once.current[`count${i}`]) {
+            once.current[`count${i}`] = true;
+            gsap.to(imgBox, {scale: 1, duration: .6});
+          } 
+        });
+      }
+      
     }
-  }, [loopY]);
+  }, [loopY, isMobile]);
 
   return(
       <>
@@ -44,7 +61,7 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
             <div className="floating_img">
               <div className="floating_list">
                 <div className="img_box">
-                  <Image src="/images/img-gallery01.jpg" alt="gallery 이미지1" width="415" height="415" />
+                  <Image src="/images/img-gallery01.jpg" alt="gallery 이미지1" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="info">
                   <p className="tit">Victory</p>
@@ -53,7 +70,7 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
               </div>
               <div className="floating_list">
                 <div className="img_box">
-                  <Image src="/images/img-gallery02.jpg" alt="gallery 이미지2" width="415" height="415" />
+                  <Image src="/images/img-gallery02.jpg" alt="gallery 이미지2" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="info">
                   <p className="tit">Triumph</p>
@@ -62,7 +79,7 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
               </div>
               <div className="floating_list">
                 <div className="img_box">
-                  <Image src="/images/img-gallery03.jpg" alt="gallery 이미지2" width="415" height="415" />
+                  <Image src="/images/img-gallery03.jpg" alt="gallery 이미지2" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="info">
                   <p className="tit">Champion</p>
@@ -71,7 +88,7 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
               </div>
               <div className="floating_list">
                 <div className="img_box">
-                  <Image src="/images/img-gallery04.jpg" alt="gallery 이미지2" width="415" height="415" />
+                  <Image src="/images/img-gallery04.jpg" alt="gallery 이미지2" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="info">
                   <p className="tit">Glory</p>
@@ -80,7 +97,7 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
               </div>
               <div className="floating_list">
                 <div className="img_box">
-                  <Image src="/images/img-gallery05.jpg" alt="gallery 이미지2" width="415" height="415" />
+                  <Image src="/images/img-gallery05.jpg" alt="gallery 이미지2" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="info">
                   <p className="tit">Match</p>
@@ -89,7 +106,7 @@ export default function GallerySec({ Loading, loopY, galleryProgress }) {
               </div>
               <div className="floating_list">
                 <div className="img_box">
-                  <Image src="/images/img-gallery06.jpg" alt="gallery 이미지2" width="415" height="415" />
+                  <Image src="/images/img-gallery06.jpg" alt="gallery 이미지2" fill style={{ objectFit: "cover" }} />
                 </div>
                 <div className="info">
                   <p className="tit">Summit</p>

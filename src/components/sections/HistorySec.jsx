@@ -53,7 +53,6 @@ export default function HistorySec({ Loading, loopY, isMobile }) {
 						scrollTrigger: {
 							trigger: el,
 							start: "top center",
-							markers: true,
 							once: true,
 							onEnter: () => {
 								const counter = new CountUp(countNum, targets[i], {

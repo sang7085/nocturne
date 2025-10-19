@@ -67,7 +67,7 @@ export default function Home() {
       const heights = sections.slice(1, -1).map((s) => s.offsetHeight);
       const totalHeight = heights.reduce((a, b) => a + b, 0);
       const fakeVh = window.innerHeight / 2;
-      const firstCloneHeight = sections[0].offsetHeight + fakeVh;
+      const firstCloneHeight = sections[0].offsetHeight;
       
       let scrollY = firstCloneHeight;
       let targetY = firstCloneHeight; 
@@ -139,7 +139,7 @@ export default function Home() {
           <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} isMobile={isMobile} />
           <AchieveSec loading={loading} loopY={loopY} isMobile={isMobile} />
           <HistorySec loading={loading} loopY={loopY} isMobile={isMobile} />
-          <GallerySec loading={loading} loopY={loopY} galleryProgress={setGalleryProgress} />
+          <GallerySec loading={loading} loopY={loopY} galleryProgress={setGalleryProgress} isMobile={isMobile} />
           <MatchesSec loading={loading} loopY={loopY} />
           <SponsorSec loading={loading} loopY={loopY} />
           <ContentSec loading={loading} loopY={loopY} />

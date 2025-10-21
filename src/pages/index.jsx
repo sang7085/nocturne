@@ -64,16 +64,21 @@ export default function Home() {
       // PC
       const track = trackRef.current;
       const sections = Array.from(track.querySelectorAll("section"));
-      const heights = sections.slice(1, -1).map((s) => s.offsetHeight);
-      const totalHeight = heights.reduce((a, b) => a + b, 0);
-      const fakeVh = window.innerHeight / 2;
+
+      // 🟡 높이 계산부를 함수로 분리 (resize 시 재활용 가능)
+      const getTotalHeight = () => {
+        const heights = sections.slice(1, -1).map((s) => s.offsetHeight);
+        return heights.reduce((a, b) => a + b, 0);
+      };
+
+      let totalHeight = getTotalHeight(); // 🟡 기존 totalHeight 대신 함수 호출
       const firstCloneHeight = sections[0].offsetHeight;
-      
+
       let scrollY = firstCloneHeight;
-      let targetY = firstCloneHeight; 
-      let currentY = targetY;         
-      const ease = 0.05;          
-    
+      let targetY = firstCloneHeight;
+      let currentY = targetY;
+      const ease = 0.05;
+
       if (sections.length > 0) {
         setFirstOffset(firstCloneHeight);
       }
@@ -82,14 +87,14 @@ export default function Home() {
         currentY += (targetY - currentY) * ease;
         const loopYVal = Math.round(((currentY % totalHeight) + totalHeight) % totalHeight);
         track.style.transform = `translateY(-${loopYVal}px)`;
-        setLoopY(loopYVal); // ✅ loopY 업데이트
+        setLoopY(loopYVal);
         rafId.current = requestAnimationFrame(update);
       };
-    
+
       const onWheel = (e) => {
         scrollY += e.deltaY;
         targetY += e.deltaY;
-    
+
         if (targetY < 0) {
           targetY += totalHeight;
           currentY += totalHeight;
@@ -101,15 +106,25 @@ export default function Home() {
           scrollY -= totalHeight;
         }
       };
-    
-        window.addEventListener("wheel", onWheel, { passive: false });
-        rafId.current = requestAnimationFrame(update);
-      
-        return () => {
-          window.removeEventListener("wheel", onWheel);
-          cancelAnimationFrame(rafId.current);
-        };
-      }
+
+      const handleResize = () => {
+        totalHeight = getTotalHeight();
+        currentY = firstCloneHeight;
+        targetY = firstCloneHeight;
+        scrollY = firstCloneHeight;
+        // console.log("totalHeight 갱신:", totalHeight);
+      };
+
+      window.addEventListener("wheel", onWheel, { passive: false });
+      window.addEventListener("resize", handleResize);
+      rafId.current = requestAnimationFrame(update);
+
+      return () => {
+        window.removeEventListener("wheel", onWheel);
+        window.removeEventListener("resize", handleResize);
+        cancelAnimationFrame(rafId.current);
+      };
+    }
   }, [isMobile]);
   
   // floating 텍스트 모션

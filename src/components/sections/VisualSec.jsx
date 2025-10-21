@@ -71,7 +71,7 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
             const progress = (loopY - baseOffset) / (visualSecH - fakeVh) ;
             const relativeY = (progress * 100) + fakeVh;
             const relativeY2 = progress * 200;
-            console.log(progress)
+            // console.log(progress);
             // if (loopY >= baseOffset) {
         
             //   gsap.to(".trophy", { y: -relativeY, xPercent: -50, overwrite: "auto" });

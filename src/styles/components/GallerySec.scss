@@ -31,39 +31,39 @@
         z-index: 1;
         .floating_img {
             position: relative;
-            height: 2954px;
+            height: 295.4rem;
             .floating_list {
                 position: absolute;
                 overflow: hidden;
-                max-width: 415px;
+                max-width: 41.5rem;
 
                 &:nth-child(1) {
                   right: 0;
                 }
 
                 &:nth-child(2) {
-                  top: 208px;
+                  top: 20.8rem;
                   left: 0;
                 }
 
                 &:nth-child(3) {
-                  top: 736px;
-                  left: 647px;
+                  top: 73.6rem;
+                  left: 64.7rem;
                 }
 
                 &:nth-child(4) {
-                  top: 1112px;
+                  top: 111.2rem;
                   right: 0;
                 }
 
                 &:nth-child(5) {
-                  top: 1320px;
+                  top: 132rem;
                   left: 0;
                 }
                 
                 &:nth-child(6) {
-                  top: 1845px;
-                  left: 647px;
+                  top: 184.5rem;
+                  left: 64.7rem;
                 }
                 
                 .img_box {
@@ -76,11 +76,11 @@
                 .info {
                     z-index: 1;
                     position: relative;   
-                    margin-top: 15px;
+                    margin-top: 1.5rem;
                     display: flex;
                     justify-content: space-between;
                     font-family: 'Inconsolata SemiCondensed', monospace;
-                    font-size: 24px;
+                    font-size: 2.4rem;
                     text-transform: uppercase;
                     color: $color-white;
                     .tit {
@@ -97,7 +97,7 @@
         .floating_txt {
             z-index: $z-index-front;
             position: absolute;
-            top: 172px;
+            top: 17.2rem;
             display: flex;
             justify-content: center;
             width: 100%;
@@ -107,16 +107,39 @@
             will-change: transform;
 
             .sub_txt {
-              font-size: 28px;
+              font-size: 2.8rem;
               font-weight: 600;
             }
             .tit {
-                margin-top: 10px;
+                margin-top: 1rem;
                 font-family: "Anton", sans-serif;
-                font-size: 126px;
+                font-size: 12.6rem;
                 line-height: 1;
                 letter-spacing: 6px;
             }
         }
     }
+}
+
+// 2. 태블릿용
+@media (max-width: 1279px) {
+  .gallery_sec {
+    .inner {
+      .floating_img {
+        .floating_list {
+          .img_box {
+            width: 30rem;
+            height: 30rem;
+          }
+          .info {
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 3. 모바일용
+@media (max-width: 767px) {
 }

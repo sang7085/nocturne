@@ -6,49 +6,47 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AchieveSec({ loading, loopY, isMobile }) {
   const once = useRef(false);
   useEffect(() => {
-    if(isMobile) {
-      const achieveSec = document.querySelector(".achieve_sec");
-      const path = achieveSec.querySelector(".path");
-      gsap.to(".left-wall", {
-        xPercent: -100,
-        scrollTrigger: {
-          trigger: ".achieve_sec",
-          start: "top center",
-          onUpdate() {
-            path.classList.add("path-active");
-          }
-        }
-      });
-      gsap.to(".right-wall", {
-        xPercent: 100,
-        scrollTrigger: {
-          trigger: ".achieve_sec",
-          start: "top center",
-        }
-      });
-    } else {
-      if(!loading) {
+    if(!loading) {
+      if(isMobile) {
         const achieveSec = document.querySelector(".achieve_sec");
         const path = achieveSec.querySelector(".path");
-        const gap = 400;
-        const reset = 100;
-        const baseOffset = achieveSec.offsetTop;
-        gsap.set(".left-wall", {xPercent: 0});
-        gsap.set(".right-wall", {xPercent: 0});
-  
-        if (loopY > baseOffset - gap) {
-          gsap.to(".left-wall", {xPercent: -100, duration: 1,});
-          gsap.to(".right-wall", {xPercent: 100, duration: 1,});
-          path.classList.add("path-active");
-          once.current = true;
-        }
-        
-        if (loopY < reset) {
-          gsap.set(".left-wall", {xPercent: 0});
-          gsap.set(".right-wall", {xPercent: 0});
-          path.classList.remove("path-active");
-          once.current = false;
-        }
+        gsap.to(".left-wall", {
+          xPercent: -100,
+          scrollTrigger: {
+            trigger: ".achieve_sec",
+            start: "top center",
+            onUpdate() {
+              path.classList.add("path-active");
+            }
+          }
+        });
+        gsap.to(".right-wall", {
+          xPercent: 100,
+          scrollTrigger: {
+            trigger: ".achieve_sec",
+            start: "top center",
+          }
+        });
+      } else {
+          const achieveSec = document.querySelector(".achieve_sec");
+          const path = achieveSec.querySelector(".path");
+          const gap = 400;
+          const reset = 100;
+          const baseOffset = achieveSec.offsetTop;
+    
+          if (loopY > baseOffset - gap && !once.current) {
+            gsap.to(".left-wall", {xPercent: -100, duration: 1,});
+            gsap.to(".right-wall", {xPercent: 100, duration: 1,});
+            path.classList.add("path-active");
+            once.current = true;
+          }
+          
+          if (loopY < reset && once.current) {
+            gsap.set(".left-wall", {xPercent: 0});
+            gsap.set(".right-wall", {xPercent: 0});
+            path.classList.remove("path-active");
+            once.current = false;
+          }
       }
     }
   }, [loopY, isMobile]);

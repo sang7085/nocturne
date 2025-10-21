@@ -74,7 +74,7 @@ export default function HistorySec({ Loading, loopY, isMobile }) {
           const countNum = el.querySelector(".count_num");
 					
           // 모션 초기화
-          if (loopY < reset) {
+          if (loopY < reset && once.current) {
 						gsap.set(".slide_title", { opacity: 0 });
 						gsap.set(".per20", { xPercent: 20 });
 						gsap.set(".history_slogan span", { opacity: 0 });

@@ -37,7 +37,7 @@ export default function ContentSec({ Loading, loopY }) {
         once.current = true;
       }
       
-      if (loopY < reset) {
+      if (loopY < reset && once.current) {
         gsap.set(secTit, {opacity: 0, y: 100});
         once.current = false;
       }

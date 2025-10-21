@@ -24,7 +24,8 @@ export default function GallerySec({ Loading, loopY, galleryProgress, isMobile }
 
       if(isMobile) {
         floatingList.forEach((el, i) => {
-          gsap.to(el, {
+          const imgBox = el.querySelectorAll(".img_box");
+          gsap.to(imgBox, {
             scale: 1,
             scrollTrigger: {
               trigger: el,
@@ -39,7 +40,7 @@ export default function GallerySec({ Loading, loopY, galleryProgress, isMobile }
           const imgBox = el.querySelectorAll(".img_box");
           const offset = el.offsetTop;
           
-          if (loopY < reset) {
+          if (loopY < reset && once.current) {
             gsap.set(imgBox, {scale: 0,});
             once.current[`count${i}`] = false;
           }
@@ -58,6 +59,12 @@ export default function GallerySec({ Loading, loopY, galleryProgress, isMobile }
       <>
         <section className="gallery_sec">
           <div className="inner">
+          <div className={isMobile ? "block" : "none"}>
+            <div className="tit_wrap">
+              <h3 className="sub_tit">[moment of nocturne]</h3>
+              <h2 className="tit">To inspire <br /> the best game in you</h2>
+            </div>
+          </div>
             <div className="floating_img">
               <div className="floating_list">
                 <div className="img_box">

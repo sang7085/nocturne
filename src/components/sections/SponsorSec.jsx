@@ -14,26 +14,20 @@ export default function SponsorSec({ loading, loopY }) {
       const gap = 400;
       const reset = 100;
 
-      // path.forEach((el) => {
-      //   if(loopY > baseOffset - gap && !once.current) {
-      //     el.classList.add("path-active");
-      //   } else {
-      //     el.classList.remove("path-active");
-      //   }
-      // })
-
       if(loopY > baseOffset - gap && !once.current) {
         gsap.to(slogan, {opacity: 1, y: 0});
         gsap.to(secTit, {opacity: 1, y: 0});
+        gsap.to(".list_con", {x: 0, opacity: 1});
         path.forEach((el) => {
           el.classList.add("path-active");
         })
         once.current = true;
       }
       
-      if (loopY < reset) {
+      if (loopY < reset && once.current) {
         gsap.set(slogan, {opacity: 0, y: 100});
         gsap.set(secTit, {opacity: 0, y: 100});
+        gsap.set(".list_con", {x: "100px", opacity: 0});
         path.forEach((el) => {
           el.classList.remove("path-active");
         });

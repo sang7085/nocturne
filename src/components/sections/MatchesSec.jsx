@@ -24,7 +24,7 @@ export default function MatchesSec({ loading, loopY }) {
         once.current = true;
       }
       
-      if (loopY < reset) {
+      if (loopY < reset && once.current) {
         gsap.set(".ticket_wrap", {opacity: 0, y: 100})
         gsap.set(secTit, {opacity: 0, y: 100});
         path.forEach((el) => {

@@ -3,16 +3,17 @@
 @use "../abstracts/variables" as *;
 
 .footer_sec {
+    overflow: visible;
     position: relative;
     width: 100%;
 
     .inner {
-        height: 712px;
+        height: 71.2rem;
     }
     .txt {
         z-index: 9;
         position: relative;
-        padding: 71px;
+        padding: 7rem;
         color: $color-primary;
     }
 }

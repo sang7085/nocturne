@@ -18,14 +18,15 @@
     height: 100vh;
   }
   .slogan {
-    margin: 0 36px;
-    padding: 100px 0 0;
+    margin: 0 3.6rem;
+    padding: 10rem 0 0;
     text-align: center;
     overflow: hidden;
     .slogan-txt {
       display: inline-block;
       font-family: "Anton", sans-serif;
-      font-size: (420 / 1920) * 100vw;
+      // font-size: (420 / 1920) * 100vw;
+      font-size: 42rem;
       line-height: 1;
       letter-spacing: -0.8vw;
       color: $color-primary;
@@ -34,8 +35,8 @@
   .keep-scroll {
     overflow: hidden;
     position: absolute;
-    bottom: 16px;
-    right: 60px;
+    bottom: 1.6rem;
+    right: 6rem;
     .txt {
       font-size: 1.8rem;
       font-weight: 700;
@@ -44,8 +45,8 @@
   }
   .visual-desc {
     position: absolute;
-    bottom: 234px;
-    left: 50px;
+    bottom: 23.4rem;
+    left: 5rem;
     .sub-desc {
       font-size: 1.6rem;
       font-weight: 700;
@@ -68,10 +69,10 @@
   }
   .floating-txt {
     position: absolute;
-    top: 400px;
-    right: 200px;
+    top: 40rem;
+    right: 20rem;
     p {
-      padding: 0 5px;
+      padding: 0 .5rem;
       color: $color-primary;
       background: #fff;
       clip-path: inset(0 100% 0 0);
@@ -94,9 +95,31 @@
   .visual-sec {
     height: 100vh;
     height: 100dvh;
+    .slogan {
+      .slogan-txt {
+        font-size: 27rem;
+      }
+    }
   }
 }
 
 // 3. 모바일용
 @media (max-width: 767px) {
+  .visual-sec {
+    .slogan {
+      .slogan-txt {
+        font-size: 15rem;
+      }
+    }
+    .floating-txt {
+      top: 45rem;
+      right: 4rem;
+    }
+    .visual-desc {
+      bottom: 11.4rem;
+    }
+    .trophy {
+      max-width: 36.2rem; 
+    }
+  }
 }

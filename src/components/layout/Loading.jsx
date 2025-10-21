@@ -55,7 +55,7 @@ export default function Loading({setLoading, loading}) {
                     <div className="icon-line icon bottom-right"></div>
                 </div>
                 <div className="loading-image-wrap">
-                    <Image src={currentImage} alt={`loading-image`} width={600} height={480} priority/>
+                    <Image src={currentImage} alt={`loading-image`} fill style={{ objectFit: "cover" }} priority/>
                 </div>
                     <ul className="loading-txt group top-left">
                         <li>DATE.MONTH.YEAR</li>

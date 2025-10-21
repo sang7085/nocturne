@@ -74,7 +74,7 @@ main {
     &.icon {
         width: 21px;
         height: 21px;
-        background: url("../../../public/images/icon-plus.png") no-repeat;
+        background: url("../../../public/images/icon-plus.png") no-repeat 0 / cover;
 
         &.top-left {
             top: 40px;
@@ -243,6 +243,46 @@ button {
     margin-bottom: 3.2rem;
     min-height: 2.8rem;
     font-size: 1.8rem;
+  }
+
+  .inner {
+    width: calc(100% - 10rem);
+  }
+
+  .icon-line {
+    &.icon {
+        width: 11px;
+        height: 11px;
+
+        &.top-left {
+            top: 20px;
+            left: 20px;
+        }
+        &.top-right {
+            top: 20px;
+            right: 20px;
+        }
+        &.bottom-left {
+            bottom: 20px;
+            left: 20px;
+        }
+        &.bottom-right {
+            bottom: 20px;
+            right: 20px;
+        }
+    }
+}
+
+.short-line {
+  .icon-line {
+      &.top {
+          top: 5px;
+      }
+      &.bottom {
+          bottom: 5px;
+      }
+
+  }
 }
 
   button {
@@ -261,5 +301,7 @@ button {
 }
 // 3. 모바일용
 @media (max-width: 767px) {
-
+  .icon-line {
+    
+  }
 }

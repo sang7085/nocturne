@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 
-export default function ContentSec({ Loading, loopY }) {
+export default function ContentSec({ Loading, loopY, isMobile }) {
   const once = useRef(false);
   const handleEnter = (e) => {
     const el = e.currentTarget;
@@ -32,17 +34,47 @@ export default function ContentSec({ Loading, loopY }) {
       const gap = 400;
       const reset = 100;
 
-      if(loopY > baseOffset - gap && !once.current) {
-        gsap.to(secTit, {opacity: 1, y: 0});
-        once.current = true;
+      if(isMobile) {
+        gsap.set(conList, {
+          opacity: 0,
+          y: 100,
+        });
+
+        gsap.to(secTit, {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: secTit,
+            start: "top center",
+          },
+        });
+
+        conList.forEach((el) => {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              bottom: "bottom center",
+            }
+          });
+        });
+
+      } else {
+        if(loopY > baseOffset - gap && !once.current) {
+          gsap.to(secTit, {opacity: 1, y: 0});
+          once.current = true;
+        }
+        
+        if (loopY < reset && once.current) {
+          gsap.set(secTit, {opacity: 0, y: 100});
+          once.current = false;
+        }
       }
-      
-      if (loopY < reset && once.current) {
-        gsap.set(secTit, {opacity: 0, y: 100});
-        once.current = false;
-      }
+
     }
-  }, [])
+  }, [loopY, isMobile]);
 
     return(
         <>

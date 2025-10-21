@@ -1,13 +1,14 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
-import Typed from "typed.js";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
-export default function MatchesSec({ loading, loopY }) {
+export default function MatchesSec({ Loading, loopY, isMobile }) {
   const once = useRef(false);
   
   useEffect(() => {
-    if(!loading) {
+    if(!Loading) {
       const matchesSec = document.querySelector(".matches_sec");
       const secTit = matchesSec.querySelector(".sec_tit");
       const path = matchesSec.querySelectorAll(".path");
@@ -15,25 +16,57 @@ export default function MatchesSec({ loading, loopY }) {
       const reset = 100;
       const baseOffset = matchesSec.offsetTop;
 
-      if(loopY > baseOffset - gap && !once.current) {
-        gsap.to(".ticket_wrap", {opacity: 1, y: 0});
-        gsap.to(secTit, {opacity: 1, y: 0});
-        path.forEach((el) => {
-          el.classList.add("path-active");
-        })
-        once.current = true;
-      }
-      
-      if (loopY < reset && once.current) {
-        gsap.set(".ticket_wrap", {opacity: 0, y: 100})
-        gsap.set(secTit, {opacity: 0, y: 100});
-        path.forEach((el) => {
-          el.classList.remove("path-active");
+      if(isMobile) {
+        gsap.to(secTit, {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: secTit,
+            start: "top center",
+          }
         });
-        once.current = false;
+        gsap.to(".ticket_wrap", {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: ".ticket_wrap",
+            start: "top center",
+          }
+        })
+        path.forEach((el) => {
+          gsap.to(el, {
+            scrollTrigger: {
+              trigger: ".sec_tit",
+              start: "top center",
+              onUpdate() {
+                el.classList.add("path-active");
+              }
+            }
+          });
+        });
+        
+      } else {
+        if(loopY > baseOffset - gap && !once.current) {
+          gsap.to(".ticket_wrap", {opacity: 1, y: 0});
+          gsap.to(secTit, {opacity: 1, y: 0});
+          path.forEach((el) => {
+            el.classList.add("path-active");
+          })
+          once.current = true;
+        }
+        
+
+        if (loopY < reset && once.current) {
+          gsap.set(".ticket_wrap", {opacity: 0, y: 100})
+          gsap.set(secTit, {opacity: 0, y: 100});
+          path.forEach((el) => {
+            el.classList.remove("path-active");
+          });
+          once.current = false;
+        }
       }
     }
-  }, [loopY]);
+  }, [loopY, isMobile]);
 
   return(
       <>

@@ -3,7 +3,7 @@
 @use "../abstracts/variables" as *;
 
 .matches_sec {
-    padding: 100px 0 260px;
+    padding: 10rem 0 26rem;
     width: 100%;
     background-color: #0D0D0D;
 
@@ -38,13 +38,13 @@
                       }
                       .other {
                         font-size: 6.8rem;
+                        font-family: "Anton", sans-serif;
                         color: $color-white;
                         span {
                           position: relative;
                           margin-left: 2.3rem;
                           font-size: 9.2rem;
                           line-height: 1;
-                          font-family: "Anton", sans-serif;
 
                           &::before {
                             content: "";
@@ -171,4 +171,78 @@
             }
         }
     }
+}
+
+// 2. 태블릿용
+@media (max-width: 1279px) {
+  .matches_sec {
+    padding: 8rem 0 20rem;
+    
+    .inner {
+      width: calc(100% - 60px);
+      
+      .ticket_wrap {
+        gap: 2rem;
+        
+        .left_area {
+          .wide-ticket {
+            padding: 2.5rem;
+            .date_wrap {
+              .other {
+                font-size: 4rem;
+                span {
+                  font-size: 5.5rem;
+                }
+              }
+              .info {
+                font-size: 2.8rem;
+              }
+            }
+            .tit {
+              font-size: 12rem;
+              line-height: 0.9;
+            }
+            .btn_wrap {
+              margin-top: 2.5rem;
+              .btn_wide {
+                padding: 0.8rem 0;
+                font-size: 1.6rem;
+              }
+            }
+          }
+        }
+        .right_area {
+          .ticket {
+            .ticket_area {
+              min-height: 16rem;
+              .info {
+                padding: 3rem 0 3rem 2.5rem;
+                .date {
+                  font-size: 3.5rem;
+                  span {
+                    font-size: 2.2rem;
+                  }
+                }
+                .other {
+                  font-size: 2rem; 
+                  span {
+                    font-size: 2.8rem;
+                  }
+                }
+              }
+              .btn {
+                width: 10rem;
+                font-size: 1.4rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 3. 모바일용
+@media (max-width: 767px) {
+
 }

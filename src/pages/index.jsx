@@ -130,9 +130,9 @@ export default function Home() {
   // floating 텍스트 모션
   useEffect(() => {
     if (galleryProgress > 0 && galleryProgress < 1) {
-      gsap.to(".floating_txt2", { zIndex: 9999, opacity: 1, duration: .6 });
+      gsap.to(".floating_txt2.pc", { zIndex: 9999, opacity: 1, duration: .6 });
     } else {
-      gsap.to(".floating_txt2", { zIndex: -1, opacity: 0, duration: .6 });
+      gsap.to(".floating_txt2.pc", { zIndex: -1, opacity: 0, duration: .6 });
     }
   }, [galleryProgress]);
 
@@ -140,7 +140,7 @@ export default function Home() {
     <>
       <Loading setLoading={setLoading} loading={loading} />
       <Header />
-      <div className="floating_txt2">
+      <div className="floating_txt2 pc">
         <div className="tit_wrap">
           <h3 className="sub_tit">[moment of nocturne]</h3>
           <h2 className="tit">To inspire <br /> the best game in you</h2>
@@ -155,9 +155,9 @@ export default function Home() {
           <AchieveSec loading={loading} loopY={loopY} isMobile={isMobile} />
           <HistorySec loading={loading} loopY={loopY} isMobile={isMobile} />
           <GallerySec loading={loading} loopY={loopY} galleryProgress={setGalleryProgress} isMobile={isMobile} />
-          <MatchesSec loading={loading} loopY={loopY} />
-          <SponsorSec loading={loading} loopY={loopY} />
-          <ContentSec loading={loading} loopY={loopY} />
+          <MatchesSec loading={loading} loopY={loopY} isMobile={isMobile} />
+          <SponsorSec loading={loading} loopY={loopY} isMobile={isMobile} />
+          <ContentSec loading={loading} loopY={loopY} isMobile={isMobile} />
           <FooterSec loading={loading} loopY={loopY} />
           {!isMobile && (
             <VisualSec loading={loading} loopY={loopY} />

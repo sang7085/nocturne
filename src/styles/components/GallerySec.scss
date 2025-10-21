@@ -3,122 +3,134 @@
 @use "../abstracts/variables" as *;
 
 .gallery_sec {
-    overflow: hidden;
+  overflow: hidden;
+  width: 100%;
+  background-color: $color-primary;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    background-color: $color-primary;
-    
-    &::after {
-        content: "";
+    height: 47.2rem;
+    background: linear-gradient(0deg, #0d0d0d 0%, #ed0100 100%);
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 47.2rem;
+    background: linear-gradient(180deg, #0d0d0d 0%, #ed0100 100%);
+  }
+
+  .inner {
+    margin-top: 330px;
+    z-index: 1;
+    .floating_img {
+      position: relative;
+      height: 295.4rem;
+      .floating_list {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 47.2rem;
-        background: linear-gradient(0deg, #0D0D0D 0%, #ED0100 100%);
+        overflow: hidden;
+        max-width: 41.5rem;
+
+        &:nth-child(1) {
+          right: 0;
+        }
+
+        &:nth-child(2) {
+          top: 20.8rem;
+          left: 0;
+        }
+
+        &:nth-child(3) {
+          top: 73.6rem;
+          left: 64.7rem;
+        }
+
+        &:nth-child(4) {
+          top: 111.2rem;
+          right: 0;
+        }
+
+        &:nth-child(5) {
+          top: 132rem;
+          left: 0;
+        }
+
+        &:nth-child(6) {
+          top: 184.5rem;
+          left: 64.7rem;
+        }
+
+        .img_box {
+          position: relative;
+          transform: scale(0);
+          width: 41.5rem;
+          height: 41.5rem;
+          z-index: 2;
+        }
+        .info {
+          z-index: 1;
+          position: relative;
+          margin-top: 1.5rem;
+          display: flex;
+          justify-content: space-between;
+          font-family: "Inconsolata SemiCondensed", monospace;
+          font-size: 2.4rem;
+          text-transform: uppercase;
+          color: $color-white;
+          .tit {
+            font-weight: 700;
+          }
+          .date {
+            font-weight: 400;
+            opacity: 0.5;
+          }
+        }
       }
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 47.2rem;
-        background: linear-gradient(180deg, #0D0D0D 0%, #ED0100 100%);
     }
 
-    .inner {
-        margin-top: 330px;
-        z-index: 1;
-        .floating_img {
-            position: relative;
-            height: 295.4rem;
-            .floating_list {
-                position: absolute;
-                overflow: hidden;
-                max-width: 41.5rem;
+    .floating_txt {
+      z-index: $z-index-front;
+      position: absolute;
+      top: 17.2rem;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      color: $color-white;
+      will-change: transform;
 
-                &:nth-child(1) {
-                  right: 0;
-                }
-
-                &:nth-child(2) {
-                  top: 20.8rem;
-                  left: 0;
-                }
-
-                &:nth-child(3) {
-                  top: 73.6rem;
-                  left: 64.7rem;
-                }
-
-                &:nth-child(4) {
-                  top: 111.2rem;
-                  right: 0;
-                }
-
-                &:nth-child(5) {
-                  top: 132rem;
-                  left: 0;
-                }
-                
-                &:nth-child(6) {
-                  top: 184.5rem;
-                  left: 64.7rem;
-                }
-                
-                .img_box {
-                 position: relative;
-                 transform: scale(0);
-                 width: 41.5rem;
-                 height: 41.5rem;
-                 z-index: 2;
-                }
-                .info {
-                    z-index: 1;
-                    position: relative;   
-                    margin-top: 1.5rem;
-                    display: flex;
-                    justify-content: space-between;
-                    font-family: 'Inconsolata SemiCondensed', monospace;
-                    font-size: 2.4rem;
-                    text-transform: uppercase;
-                    color: $color-white;
-                    .tit {
-                        font-weight: 700;
-                    }
-                    .date {
-                        font-weight: 400;
-                        opacity: .5;
-                    }
-                }
-            }
-        }
-
-        .floating_txt {
-            z-index: $z-index-front;
-            position: absolute;
-            top: 17.2rem;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            text-align: center;
-            text-transform: uppercase;
-            color: $color-white;
-            will-change: transform;
-
-            .sub_txt {
-              font-size: 2.8rem;
-              font-weight: 600;
-            }
-            .tit {
-                margin-top: 1rem;
-                font-family: "Anton", sans-serif;
-                font-size: 12.6rem;
-                line-height: 1;
-                letter-spacing: 6px;
-            }
-        }
+      .sub_txt {
+        font-size: 2.8rem;
+        font-weight: 600;
+      }
+      .tit {
+        margin-top: 1rem;
+        font-family: "Anton", sans-serif;
+        font-size: 12.6rem;
+        line-height: 1;
+        letter-spacing: 6px;
+      }
     }
+    .floating_txt2 {
+      opacity: 1;
+      top: 15.2rem;
+      transform: translateY(0);
+      &.hidden {
+        display: none;
+      }
+
+      &.block {
+        display: block;
+      }
+    }
+  }
 }
 
 // 2. 태블릿용
@@ -126,6 +138,7 @@
   .gallery_sec {
     .inner {
       .floating_img {
+        height: 240.4rem;
         .floating_list {
           .img_box {
             width: 30rem;
@@ -135,6 +148,12 @@
             font-size: 1.8rem;
           }
         }
+      }
+      
+      .floating_txt2 {
+       .tit {
+        font-size: 8.6rem;
+       }
       }
     }
   }

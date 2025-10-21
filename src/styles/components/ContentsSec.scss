@@ -91,3 +91,42 @@
       }
     }
 }
+
+
+// 2. 태블릿용
+@media (max-width: 1279px) {
+  .contents_sec {
+    .inner {
+      .content_wrap {
+        .content_list {
+          height: 19.2rem;
+          &::before,
+          &::after {
+            display: none;
+          }
+          &:hover {
+            .tit_wrap {
+              .tag {
+                background-color: $color-primary;
+                color: $color-white;
+              }
+            }
+          }
+          .tit_wrap {
+            .tit {
+              font-size: 14rem;
+            }
+            .tag {
+              padding: 0.2rem 0.6rem;
+              font-size: 1.6rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 3. 모바일용
+@media (max-width: 767px) {
+}

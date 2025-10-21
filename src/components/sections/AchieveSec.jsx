@@ -3,10 +3,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function AchieveSec({ loading, loopY, isMobile }) {
+export default function AchieveSec({ Loading, loopY, isMobile }) {
   const once = useRef(false);
   useEffect(() => {
-    if(!loading) {
+    if(!Loading) {
       if(isMobile) {
         const achieveSec = document.querySelector(".achieve_sec");
         const path = achieveSec.querySelector(".path");

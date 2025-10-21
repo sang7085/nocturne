@@ -7,6 +7,7 @@
   overflow: hidden;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   background-color: $color-black;
   // border: 1px solid #ff0000;
   .visual_fake {
@@ -94,7 +95,6 @@
 @media (max-width: 1279px) {
   .visual-sec {
     height: 100vh;
-    height: 100dvh;
     .slogan {
       .slogan-txt {
         font-size: 27rem;

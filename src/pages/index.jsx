@@ -53,12 +53,6 @@ export default function Home() {
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
-      
-      if (trackRef.current) {
-        cancelAnimationFrame(rafId);
-        gsap.killTweensOf(trackRef.current);
-        gsap.set(trackRef.current, { clearProps: "transform", y: 0 });
-      }
       return;
     } else {
       // PC
@@ -114,6 +108,12 @@ export default function Home() {
         scrollY = firstCloneHeight;
         // console.log("totalHeight 갱신:", totalHeight);
       };
+
+      // if (trackRef.current) {
+      //   cancelAnimationFrame(rafId);
+      //   gsap.killTweensOf(trackRef.current);
+      //   gsap.set(trackRef.current, { clearProps: "transform", y: 0 });
+      // }
 
       window.addEventListener("wheel", onWheel, { passive: false });
       window.addEventListener("resize", handleResize);

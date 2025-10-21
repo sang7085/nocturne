@@ -210,8 +210,62 @@
 // 3. 모바일용
 @media (max-width: 767px) {
   .history_sec {
+    .history_tit {
+      .slide_title {
+        font-size: 10.2rem;
+
+        &:nth-child(1) {
+          margin-left: 46rem;
+        }
+        &:nth-child(2) {
+          margin-left: 4rem;
+        }
+        &:nth-child(3) {
+          margin-left: 0.4em;
+        }
+      }
+    }
     .history_slogan {
       padding: 6rem 0 0 18rem;
+    }
+
+    .count_area {
+      // padding-bottom: 50rem;
+      .count_list {
+        padding: 2rem;
+        &:nth-child(2) {
+          left: 58.3rem;
+          max-width: calc(100% - 58.3rem);
+        }
+        &:nth-child(3) {
+          top: 50.2rem;
+          left: 43.8rem;
+          max-width: calc(100% - 43.8rem);
+        }
+        &:nth-child(4) {
+          top: 65.2rem;
+          left: 21.2rem;
+          max-width: calc(100% - 21.2rem);
+        }
+        &.full {
+          padding: 2rem 0 2rem 4rem;
+        }
+        .count_num {
+          font-size: 20rem;
+        }
+        .count_date {
+          transform: translateY(0);
+        }
+        .count_info {
+          transform: translateY(0);
+          .info_tit {
+            font-size: 3rem;
+          }
+          .info_txt {
+            font-size: 2rem;
+          }
+        }
+      }
     }
   }
 }

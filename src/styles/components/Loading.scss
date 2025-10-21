@@ -90,22 +90,22 @@
       @include dis-grid(2, 2, 2rem, 1rem);
     }
     &.top-left {
-      top: 6.2rem;
-      left: 6.2rem;
+      top: 62px;
+      left: 62px;
     }
     &.top-right {
-      top: 6.2rem;
-      right: 6.2rem;
+      top: 62px;
+      right: 62px;
     }
     &.bottom-left {
-      bottom: 6.2rem;
-      left: 6.2rem;
+      bottom: 62px;
+      left: 62px;
     }
   }
   .loading-percent {
     position: absolute;
-    bottom: 3.2rem;
-    right: 6.5rem;
+    bottom: 32px;
+    right: 65px;
   }
 }
 
@@ -129,8 +129,7 @@
       }
     }
     .loading-image-wrap {
-      width: 30em;
-      height: 24rem;
+
     }
   }
 }
@@ -138,8 +137,7 @@
 @media (max-width: 767px) {
   .loading-sec {
     .loading-image-wrap {
-      width: 30em;
-      height: 24rem;
+
     }
   }
 }

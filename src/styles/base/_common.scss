@@ -3,126 +3,126 @@
 @use "../abstracts/variables" as *;
 
 section {
-    position: relative;
-    overflow-x: hidden;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .sec_tit {
-    transform: translateY(100px);
-    opacity: 0;
-    margin-bottom: 5.2rem;
-    min-height: 4.2rem;
-    font-size: 2.8rem;
-    font-weight: 600;
-    color: $color-primary;
+  transform: translateY(100px);
+  opacity: 0;
+  margin-bottom: 5.2rem;
+  min-height: 4.2rem;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: $color-primary;
 }
 
 main {
-    &.pc {
-        overflow: hidden;
-        position: relative;
-        height: 100vh;
-    }
-    &.mobile {
-        overflow: visible;
-        position: relative;
-        height: auto;
-    }
+  &.pc {
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+  }
+  &.mobile {
+    overflow: visible;
+    position: relative;
+    height: auto;
+  }
 }
 
 .section {
-    &.pc {
-        display: block;
-    }
-    &.mobile {
-        display: none;
-    }
+  &.pc {
+    display: block;
+  }
+  &.mobile {
+    display: none;
+  }
 }
 
 .inner {
-    position: relative;
-    margin: 0 auto;
-    width: calc(100% - 100px);
+  position: relative;
+  margin: 0 auto;
+  width: calc(100% - 100px);
 }
 
 .icon-line {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background: $color-primary-half;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: $color-primary-half;
 
-    &.vertical {
-        width: 1px;
-        height: 100%;
-      &.left {
-        top: 0;
-        left: -1px;
-      }
-      &.right {
-        top: 0;
-        right: -1px;
-      }
+  &.vertical {
+    width: 1px;
+    height: 100%;
+    &.left {
+      top: 0;
+      left: -1px;
     }
-    &.top {
-        top: 0;
-        left: 0;
-      }
-      &.bottom {
-        bottom: 0;
-        left: 0;
+    &.right {
+      top: 0;
+      right: -1px;
     }
-    &.icon {
-        width: 21px;
-        height: 21px;
-        background: url("../../../public/images/icon-plus.png") no-repeat 0 / cover;
+  }
+  &.top {
+    top: 0;
+    left: 0;
+  }
+  &.bottom {
+    bottom: 0;
+    left: 0;
+  }
+  &.icon {
+    width: 21px;
+    height: 21px;
+    background: url("../../../public/images/icon-plus.png") no-repeat 0 / cover;
 
-        &.top-left {
-            top: 40px;
-            left: 40px;
-        }
-        &.top-right {
-            top: 40px;
-            right: 40px;
-        }
-        &.bottom-left {
-            bottom: 40px;
-            left: 40px;
-        }
-        &.bottom-right {
-            bottom: 40px;
-            right: 40px;
-        }
+    &.top-left {
+      top: 40px;
+      left: 40px;
     }
+    &.top-right {
+      top: 40px;
+      right: 40px;
+    }
+    &.bottom-left {
+      bottom: 40px;
+      left: 40px;
+    }
+    &.bottom-right {
+      bottom: 40px;
+      right: 40px;
+    }
+  }
 }
 
 .short-line {
-    .icon-line {
-        &.top {
-            top: 10px;
-        }
-        &.bottom {
-            bottom: 10px;
-        }
-
-        &.icon {
-            &.top-left {
-                top: 0;
-                left: 0;
-            }
-            &.top-right {
-                top: 0;
-                right: 0;
-            }
-            &.bottom-left {
-                bottom: 0;
-                left: 0;
-            }
-            &.bottom-right {
-                bottom: 0;
-                right: 0;
-            }
-        }
+  .icon-line {
+    &.top {
+      top: 10px;
     }
+    &.bottom {
+      bottom: 10px;
+    }
+
+    &.icon {
+      &.top-left {
+        top: 0;
+        left: 0;
+      }
+      &.top-right {
+        top: 0;
+        right: 0;
+      }
+      &.bottom-left {
+        bottom: 0;
+        left: 0;
+      }
+      &.bottom-right {
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
 }
 
 .path {
@@ -130,18 +130,20 @@ main {
     &.top,
     &.bottom {
       clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
-      transition: clip-path .6s cubic-bezier(.4, 0, .2, 1);
+      transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
     &.left,
     &.right {
       clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
-      transition: clip-path .6s cubic-bezier(.4, 0, .2, 1);
+      transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
     &.icon {
       opacity: 0;
       transform: rotate(180deg);
-      transition: opacity .6s cubic-bezier(.4, 0, .2, 1), transform .6s cubic-bezier(.4, 0, .2, 1);
-      transition-delay: .3s;
+      transition:
+        opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-delay: 0.3s;
     }
   }
   &.path-active {
@@ -155,32 +157,32 @@ main {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       }
       &.icon {
-          opacity: 1;
-          transform: rotate(0);
-        }
+        opacity: 1;
+        transform: rotate(0);
       }
+    }
   }
 }
 
 .side_line {
   .icon {
     &.top-left {
-        top: -11px;
-        left: -11px;
+      top: -11px;
+      left: -11px;
     }
     &.top-right {
-        top: -11px;
-        right: -11px;
+      top: -11px;
+      right: -11px;
     }
     &.bottom-left {
-        bottom: -11px;
-        left: -11px;
+      bottom: -11px;
+      left: -11px;
     }
     &.bottom-right {
-        bottom: -11px;
-        right: -11px;
+      bottom: -11px;
+      right: -11px;
     }
-}
+  }
 }
 
 button {
@@ -195,46 +197,48 @@ button {
       width: 200%;
       height: 100%;
       transform: translateX(-50%);
-      transition: transform .3s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
       span {
         display: inline-block;
         width: 100%;
         height: 100%;
-        background: url("../../../public/images/icon-arrow-red.svg") no-repeat 0 / cover;
-        
+        background: url("../../../public/images/icon-arrow-red.svg") no-repeat
+          0 / cover;
+
         & + span {
-          background: url("../../../public/images/icon-arrow-white.svg") no-repeat 0 / cover;
+          background: url("../../../public/images/icon-arrow-white.svg")
+            no-repeat 0 / cover;
         }
-      } 
+      }
     }
   }
 }
 
 .floating_txt2 {
-    z-index: $z-index-front;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    text-transform: uppercase;
-    color: $color-white;
-    will-change: opacity;
-    opacity: 0;
+  z-index: $z-index-front;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  color: $color-white;
+  will-change: opacity;
+  opacity: 0;
 
-    .sub_txt {
-      font-size: 2.8rem;
-      font-weight: 600;
-    }
-    .tit {
-        margin-top: 1rem;
-        font-family: "Anton", sans-serif;
-        font-size: 12.6rem;
-        line-height: 1;
-        letter-spacing: 6px;
-    }
+  .sub_txt {
+    font-size: 2.8rem;
+    font-weight: 600;
+  }
+  .tit {
+    margin-top: 1rem;
+    font-family: "Anton", sans-serif;
+    font-size: 12.6rem;
+    line-height: 1;
+    letter-spacing: 6px;
+  }
 }
 
 // 2. 태블릿용
@@ -251,50 +255,61 @@ button {
 
   .icon-line {
     &.icon {
-        width: 11px;
-        height: 11px;
+      width: 11px;
+      height: 11px;
 
-        &.top-left {
-            top: 20px;
-            left: 20px;
-        }
-        &.top-right {
-            top: 20px;
-            right: 20px;
-        }
-        &.bottom-left {
-            bottom: 20px;
-            left: 20px;
-        }
-        &.bottom-right {
-            bottom: 20px;
-            right: 20px;
-        }
+      &.top-left {
+          top: 20px;
+          left: 20px;
+      }
+      &.top-right {
+          top: 20px;
+          right: 20px;
+      }
+      &.bottom-left {
+          bottom: 20px;
+          left: 20px;
+      }
+      &.bottom-right {
+          bottom: 20px;
+          right: 20px;
+      }
     }
-}
-
-.short-line {
-  .icon-line {
-      &.top {
-          top: 5px;
-      }
-      &.bottom {
-          bottom: 5px;
-      }
-
   }
-}
+
+  .side_line {
+    .icon {
+      &.top-left {
+        top: -5px;
+        left: -5px;
+      }
+      &.top-right {
+        top: -5px;
+        right: -5px;
+      }
+      &.bottom-left {
+        bottom: -5px;
+        left: -5px;
+      }
+      &.bottom-right {
+        bottom: -5px;
+        right: -5px;
+      }
+    }
+  }
 
   button {
     .icon_con {
       .icon_wrap {
         span {
-          background: url("../../../public/images/icon-arrow-red.svg") no-repeat 0 / 1.9rem 1.9rem;
-          
+          background: url("../../../public/images/icon-arrow-red.svg") no-repeat
+            0 / 1.9rem 1.9rem;
+
           & + span {
-            background: url("../../../public/images/icon-arrow-white.svg") no-repeat 0 / 1.9rem 1.9rem;
+            background: url("../../../public/images/icon-arrow-white.svg")
+              no-repeat 0 / 1.9rem 1.9rem;
           }
-        } 
+        }
       }
     }
   }
@@ -302,6 +317,5 @@ button {
 // 3. 모바일용
 @media (max-width: 767px) {
   .icon-line {
-    
   }
 }

@@ -128,8 +128,23 @@
         }
       }
     }
-    .loading-image-wrap {
-
+    .loading-txt {
+      &.top-left {
+        top: 31px;
+        left: 31px;
+      }
+      &.top-right {
+        top: 31px;
+        right: 31px;
+      }
+      &.bottom-left {
+        bottom: 31px;
+        left: 31px;
+      }
+    }
+    .loading-percent {
+      bottom: 16px;
+      right: 32px;
     }
   }
 }

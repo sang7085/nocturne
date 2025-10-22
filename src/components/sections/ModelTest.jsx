@@ -59,12 +59,13 @@ export default function ModelTrophy({ firstOffset, isMobile }) {
         zIndex: 1,
       }}
       gl={{
-        antialias: false, 
+        antialias: false,
+        stencil: false,
+        depth: true,
         powerPreference: "high-performance",
-        alpha: true,
       }}
       dpr={[1, 1.5]}
-      performance={{ min: 0.5 }}
+      frameloop="demand"
     >
       <Suspense fallback={null}>
         <CameraController />

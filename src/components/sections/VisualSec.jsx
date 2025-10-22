@@ -126,9 +126,9 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
             <p>Give up pursuing eloquence, </p>
             <p>unless you can speak as you feel</p>
           </div>
-          <div className="trophy">
+          {/* <div className="trophy">
             <img src="/images/demo-trophy.png" alt="" />
-          </div>
+          </div> */}
           {/* <ModelTest /> */}
         </div>
       </section>

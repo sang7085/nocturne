@@ -83,6 +83,7 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
         }
 
         if (loopY < reset && once.current) {
+          gsap.set(conList, {opacity: 1, y: 0});
           gsap.set(secTit, { opacity: 0, y: 100 });
           gsap.set(".content_wrap", { opacity: 0, y: 100 });
           once.current = false;

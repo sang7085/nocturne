@@ -37,45 +37,57 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
         });
       });
 
-      if (isMobile) {
-        gsap.set(conList, {opacity: 0, y: 100});
+      ScrollTrigger.matchMedia({
+        "(min-width: 768px) and (max-width: 1279px)": function () {
+          conList.forEach((el) => {
+            gsap.to(el, {
+              opacity: 1,
+              y: 0,
+              scrollTrigger: {
+                trigger: el,
+                start: "top center",
+                bottom: "bottom center",
+              },
+            });
+          });
+        },
+        "(max-width: 767px)": function () {
+          conList.forEach((el) => {
+            gsap.to(el, {
+              opacity: 1,
+              y: 0,
+              scrollTrigger: {
+                trigger: el,
+                start: "top bottom",
+                bottom: "bottom center",
+              },
+            });
+          });
+        },
+      });
 
+      if (isMobile) {
+        gsap.set(".content_wrap", { opacity: 1, y: 0 });
+        gsap.set(conList, {opacity: 0, y: 100});
         gsap.to(secTit, {
           opacity: 1,
           y: 0,
           scrollTrigger: {
             trigger: secTit,
-            start: "top center",
+            start: "top bottom",
+            markers: true,
           },
         });
-
-        ScrollTrigger.matchMedia({
-          "(min-width: 768px) and (max-width: 1279px)": function () {
-            conList.forEach((el) => {
-              gsap.to(el, {
-                opacity: 1,
-                y: 0,
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top center",
-                  bottom: "bottom center",
-                },
-              });
-            });
-          },
-          "(max-width: 767px)": function () {
-            conList.forEach((el) => {
-              gsap.to(el, {
-                opacity: 1,
-                y: 0,
-                scrollTrigger: {
-                  trigger: el,
-                  start: "top bottom",
-                  bottom: "bottom center",
-                },
-              });
-            });
-          },
+        conList.forEach((el) => {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            scrollTrigger: {
+              trigger: el,
+              start: "top bottom",
+              bottom: "bottom center",
+            },
+          });
         });
       } else {
         if (loopY > baseOffset - gap && !once.current) {

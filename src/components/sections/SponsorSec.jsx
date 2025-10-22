@@ -30,7 +30,7 @@ export default function SponsorSec({ Loading, loopY, isMobile }) {
           y: 0,
           scrollTrigger: {
             trigger: slogan,
-            start: "top center",
+            start: "top bottom",
           },
         });
         gsap.to(".list_con", {
@@ -164,7 +164,7 @@ export default function SponsorSec({ Loading, loopY, isMobile }) {
                 <div className="icon-line icon bottom-right"></div>
               </div>
             </div>
-            <div className="spon_list">
+            {/* <div className="spon_list">
               <div className="img_box">
                 <img src="/images/img-sponsor-logo01.png" alt="" />
               </div>
@@ -233,7 +233,7 @@ export default function SponsorSec({ Loading, loopY, isMobile }) {
                 <div className="icon-line icon bottom-left"></div>
                 <div className="icon-line icon bottom-right"></div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

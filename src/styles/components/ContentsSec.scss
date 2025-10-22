@@ -129,4 +129,21 @@
 
 // 3. 모바일용
 @media (max-width: 767px) {
+  .contents_sec {
+    .inner {
+      .content_wrap {
+        .content_list {
+          height: 16.2rem;
+          .tit_wrap {
+            .tit {
+              font-size: 10rem;
+            }
+            .tag {
+              margin-left: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }

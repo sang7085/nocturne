@@ -69,6 +69,7 @@
     }
   }
   .floating-txt {
+    z-index: 1;
     position: absolute;
     top: 40rem;
     right: 20rem;
@@ -112,14 +113,14 @@
       }
     }
     .floating-txt {
-      top: 45rem;
+      top: 75rem;
       right: 4rem;
     }
     .visual-desc {
       bottom: 11.4rem;
     }
     .trophy {
-      max-width: 36.2rem; 
+      max-width: 67.2rem; 
     }
   }
 }

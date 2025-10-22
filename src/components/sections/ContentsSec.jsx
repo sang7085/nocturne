@@ -49,16 +49,33 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
           },
         });
 
-        conList.forEach((el) => {
-          gsap.to(el, {
-            opacity: 1,
-            y: 0,
-            scrollTrigger: {
-              trigger: el,
-              start: "top center",
-              bottom: "bottom center",
-            }
-          });
+        ScrollTrigger.matchMedia({
+          "(min-width: 768px) and (max-width: 1279px)": function () {
+            conList.forEach((el) => {
+              gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top center",
+                  bottom: "bottom center",
+                }
+              });
+            });
+          },
+          "(max-width: 767px)": function () {
+            conList.forEach((el) => {
+              gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top bottom",
+                  bottom: "bottom center",
+                }
+              });
+            });
+          },
         });
 
       } else {

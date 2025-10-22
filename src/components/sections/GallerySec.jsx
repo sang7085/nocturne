@@ -43,14 +43,29 @@ export default function GallerySec({
             },
           });
         });
-        gsap.to(floatingTxt, {
-          scrollTrigger: {
-            trigger: floatingTxt,
-            endTrigger: gallerySec,
-            start: "top-=330px top",
-            end: "bottom-=472px bottom",
-            pin: true,
-            pinSpacing: false,
+        ScrollTrigger.matchMedia({
+          "(min-width: 768px) and (max-width: 1279px)": function () {
+            gsap.to(floatingTxt, {
+              scrollTrigger: {
+                trigger: floatingTxt,
+                endTrigger: gallerySec,
+                start: "top-=330px top",
+                end: "bottom-=472px bottom",
+                pin: true,
+              },
+            });
+          },
+          "(max-width: 767px)": function () {
+            gsap.to(floatingTxt, {
+              scrollTrigger: {
+                trigger: floatingTxt,
+                endTrigger: gallerySec,
+                start: "top-=260px top",
+                end: "bottom bottom",
+                pin: true,
+                // markers: true,
+              },
+            });
           },
         });
       } else {

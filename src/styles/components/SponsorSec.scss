@@ -81,4 +81,26 @@
 
 // 3. 모바일용
 @media (max-width: 767px) {
+  .sponsor_sec {
+    .inner {
+      .tit_wrap {
+        display: block;
+        .slogan {
+          margin-right: 0;
+          font-size: 3rem;
+        }
+      }
+    }
+    .list_con {
+      margin: 6rem auto 0;
+      .list_wrap {
+        .spon_list {
+          height: 14.5rem;
+          .img_box {
+            width: 9.5rem;
+          }
+        }
+      }
+    }
+  }
 }

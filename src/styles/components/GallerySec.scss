@@ -27,7 +27,7 @@
   }
 
   .inner {
-    margin-top: 330px;
+    margin-top: 33rem;
     z-index: 1;
     .floating_img {
       position: relative;
@@ -129,6 +129,10 @@
       &.block {
         display: block;
       }
+
+      .sub_tit {
+        font-size: 1.6rem;
+      }
     }
   }
 }
@@ -151,9 +155,9 @@
       }
       
       .floating_txt2 {
-       .tit {
-        font-size: 8.6rem;
-       }
+        .tit {
+          font-size: 8.6rem;
+        }
       }
     }
   }
@@ -161,4 +165,27 @@
 
 // 3. 모바일용
 @media (max-width: 767px) {
+  .gallery_sec {
+    &::before,
+    &::after {
+      height: 37.2rem;
+    }
+
+    .inner {
+      .floating_img {
+        .floating_list {
+          &:nth-child(3) {
+            top: 63.6rem;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+          &:nth-child(6) {
+            top: 174.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+  }
 }

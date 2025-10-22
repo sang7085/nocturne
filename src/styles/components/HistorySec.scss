@@ -3,7 +3,7 @@
 @use "../abstracts/variables" as *;
 
 .history_sec {
-  padding-top: 50px;
+  padding-top: 5rem;
   background-color: #0d0d0d;
   .history_tit {
     .slide_title {
@@ -130,7 +130,7 @@
         position: absolute;
         width: 21px;
         height: 21px;
-        background: url("../../../public/images/icon-plus.png") no-repeat;
+        background: url("../../../public/images/icon-plus.png") no-repeat 0 / cover;
         &.top-left {
           top: -11px;
           left: -11px;
@@ -211,17 +211,21 @@
 @media (max-width: 767px) {
   .history_sec {
     .history_tit {
+      margin: 0 auto;
+      width: calc(100% - 10rem);
       .slide_title {
-        font-size: 10.2rem;
-
+        font-size: 5.2rem;
         &:nth-child(1) {
-          margin-left: 46rem;
+          margin-left: 0;
+          text-align: right;
         }
         &:nth-child(2) {
-          margin-left: 4rem;
+          margin-left: 0;
+          text-align: center;
         }
         &:nth-child(3) {
-          margin-left: 0.4em;
+          margin-left: 0;
+          text-align: left;
         }
       }
     }
@@ -230,28 +234,33 @@
     }
 
     .count_area {
-      // padding-bottom: 50rem;
+      padding-bottom: 86.8rem;
       .count_list {
         padding: 2rem;
+        gap: 4rem;
         &:nth-child(2) {
-          left: 58.3rem;
-          max-width: calc(100% - 58.3rem);
+          top: 16rem;
+          left: 32.3rem;
+          max-width: calc(100% - 32.3rem);
         }
         &:nth-child(3) {
-          top: 50.2rem;
-          left: 43.8rem;
-          max-width: calc(100% - 43.8rem);
+          top: 43.2rem;
+          left: 22.8rem;
+          max-width: calc(100% - 22.8rem);
         }
         &:nth-child(4) {
-          top: 65.2rem;
-          left: 21.2rem;
-          max-width: calc(100% - 21.2rem);
+          top: 55.2rem;
+          left: 8.2rem;
+          max-width: calc(100% - 8.2rem);
         }
         &.full {
           padding: 2rem 0 2rem 4rem;
         }
         .count_num {
-          font-size: 20rem;
+          font-size: 16rem;
+          &.hunds_place {
+            width: auto;
+          }
         }
         .count_date {
           transform: translateY(0);
@@ -262,7 +271,24 @@
             font-size: 3rem;
           }
           .info_txt {
+            display: -webkit-box;
+            -webkit-box-orient: vertical; 
+            -webkit-line-clamp: 2;
+            overflow: hidden;
             font-size: 2rem;
+          }
+        }
+        .icon {
+          position: absolute;
+          width: 11px;
+          height: 11px;
+          &.top-left {
+            top: -6px;
+            left: -6px;
+          }
+          &.bottom-left {
+            bottom: -6px;
+            left: -6px;
           }
         }
       }

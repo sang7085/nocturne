@@ -166,13 +166,13 @@ export default function Home() {
       <main className={isMobile ? "mobile" : "pc"}>
         <div ref={trackRef}>
           {!isMobile && <FooterSec loading={loading} loopY={loopY} />}
-          <ModelTest firstOffset={firstOffset} isMobile={isMobile} />
           <VisualSec
             loading={loading}
             loopY={loopY}
             firstOffset={firstOffset}
             isMobile={isMobile}
           />
+          <ModelTest firstOffset={firstOffset} isMobile={isMobile} loopY={loopY} />
           <AchieveSec loading={loading} loopY={loopY} isMobile={isMobile} />
           <HistorySec loading={loading} loopY={loopY} isMobile={isMobile} />
           <GallerySec

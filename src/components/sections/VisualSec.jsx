@@ -129,7 +129,6 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
           {/* <div className="trophy">
             <img src="/images/demo-trophy.png" alt="" />
           </div> */}
-          {/* <ModelTest /> */}
         </div>
       </section>
     </>

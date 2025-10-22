@@ -1,23 +1,21 @@
 "use client";
 import * as THREE from "three";
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment } from "@react-three/drei";
 
-// ✅ 카메라 컨트롤러
 function CameraController() {
   const { camera } = useThree();
   useEffect(() => {
     camera.position.set(0, 0, 5);
     camera.lookAt(0, 0, 0);
-    camera.fov = 45;
-    camera.updateProjectionMatrix();
   }, [camera]);
   return null;
 }
 
-function TrophyModel({ isMobile }) {
+function TrophyModel({ isMobile, isActive }) {
   const { scene } = useGLTF("/models/last.glb");
+  const { invalidate } = useThree();
   const ref = useRef();
 
   useEffect(() => {
@@ -30,25 +28,43 @@ function TrophyModel({ isMobile }) {
     });
   }, [scene]);
 
-  useFrame(() => {
-    if (ref.current) ref.current.rotation.y += 0.02;
+  useFrame((_, delta) => {
+    if (isActive && ref.current) {
+      ref.current.rotation.y += delta * 0.5;
+      invalidate();
+    }
   });
 
   return (
     <primitive
       ref={ref}
       object={scene}
-      scale={isMobile ? 4 : 7}
+      scale={isMobile ? 4 : 10}
       position={[0, 0, 0]}
       rotation={[0, 0, -0.3]}
     />
   );
 }
 
-// ✅ 메인 컴포넌트
-export default function ModelTrophy({ firstOffset, isMobile }) {
+export default function ModelTrophy({ firstOffset, isMobile, loopY }) {
+  const [isActive, setIsActive] = useState(true);
+
+  useEffect(() => {
+    const visualStart = 0;           // 첫 섹션 시작점
+    const visualEnd = 2000;          // VisualSec 끝나는 Y
+    const footerStart = 6000;        // FooterSec 시작점
+    const footerEnd = 7000;          // FooterSec 끝나는 Y
+
+    if ((loopY >= visualStart && loopY < visualEnd) || (loopY > footerStart && loopY < footerEnd)) {
+      setIsActive(true); // ✅ Trophy 활성화
+    } else {
+      setIsActive(false); // ❌ Trophy 비활성화 (렌더 중단)
+    }
+  }, [loopY]);
+
   return (
     <Canvas
+      frameloop="demand" // 기본적으로 정지 상태
       style={{
         position: "absolute",
         top: isMobile ? 0 : firstOffset,
@@ -60,19 +76,14 @@ export default function ModelTrophy({ firstOffset, isMobile }) {
       }}
       gl={{
         antialias: false,
-        stencil: false,
-        depth: true,
         powerPreference: "high-performance",
       }}
-      dpr={[1, 1.5]}
-      frameloop="demand"
     >
       <Suspense fallback={null}>
         <CameraController />
-        <directionalLight position={[0, 5, 5]} intensity={1} color="#820505" />
         <ambientLight intensity={1.2} color="#000" />
         <Environment preset="night" background={false} intensity={0.25} />
-        <TrophyModel isMobile={isMobile} />
+        <TrophyModel isMobile={isMobile} isActive={isActive} />
       </Suspense>
     </Canvas>
   );

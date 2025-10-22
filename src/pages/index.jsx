@@ -29,7 +29,7 @@ export default function Home() {
   // 분기처리
   useEffect(() => {
     const handleResize = () => {
-      if(window.innerWidth > 1279) {
+      if (window.innerWidth > 1279) {
         setIsMobile(false);
       } else {
         setIsMobile(true);
@@ -39,12 +39,12 @@ export default function Home() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  
+
   useEffect(() => {
     // null 일때 useEffect 실행안되게 막기
-    if(isMobile === null) return;
+    if (isMobile === null) return;
     cancelAnimationFrame(rafId.current);
-    if(isMobile) {
+    if (isMobile) {
       // 모바일
       // 모바일 환경에서 가상스크롤 제거
       if (trackRef.current) {
@@ -64,9 +64,6 @@ export default function Home() {
       // PC
       const track = trackRef.current;
       const sections = Array.from(track.querySelectorAll("section"));
-      
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-      gsap.globalTimeline.clear();
 
       // 🟡 높이 계산부를 함수로 분리 (resize 시 재활용 가능)
       const getTotalHeight = () => {
@@ -88,7 +85,9 @@ export default function Home() {
 
       const update = () => {
         currentY += (targetY - currentY) * ease;
-        const loopYVal = Math.round(((currentY % totalHeight) + totalHeight) % totalHeight);
+        const loopYVal = Math.round(
+          ((currentY % totalHeight) + totalHeight) % totalHeight
+        );
         track.style.transform = `translateY(-${loopYVal}px)`;
         setLoopY(loopYVal);
         rafId.current = requestAnimationFrame(update);
@@ -115,6 +114,14 @@ export default function Home() {
         currentY = firstCloneHeight;
         targetY = firstCloneHeight;
         scrollY = firstCloneHeight;
+
+        ScrollTrigger.getAll().forEach((st) => st.kill());
+        gsap.globalTimeline.clear();
+        if (track) {
+          gsap.killTweensOf(track);
+          gsap.set(track, { clearProps: "transform" });
+          track.style.transform = "none";
+        }
       };
 
       window.addEventListener("wheel", onWheel, { passive: false });
@@ -128,13 +135,13 @@ export default function Home() {
       };
     }
   }, [isMobile]);
-  
+
   // floating 텍스트 모션
   useEffect(() => {
     if (galleryProgress > 0 && galleryProgress < 1) {
-      gsap.to(".floating_txt2.pc", { zIndex: 9999, opacity: 1, duration: .6 });
+      gsap.to(".floating_txt2.pc", { zIndex: 9999, opacity: 1, duration: 0.6 });
     } else {
-      gsap.to(".floating_txt2.pc", { zIndex: -1, opacity: 0, duration: .6 });
+      gsap.to(".floating_txt2.pc", { zIndex: -1, opacity: 0, duration: 0.6 });
     }
   }, [galleryProgress]);
 
@@ -145,25 +152,33 @@ export default function Home() {
       <div className="floating_txt2 pc">
         <div className="tit_wrap">
           <h3 className="sub_tit">[moment of nocturne]</h3>
-          <h2 className="tit">To inspire <br /> the best game in you</h2>
+          <h2 className="tit">
+            To inspire <br /> the best game in you
+          </h2>
         </div>
       </div>
       <main className={isMobile ? "mobile" : "pc"}>
         <div ref={trackRef}>
-          {!isMobile && (
-            <FooterSec loading={loading} loopY={loopY} />
-          )}
-          <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} isMobile={isMobile} />
+          {!isMobile && <FooterSec loading={loading} loopY={loopY} />}
+          <VisualSec
+            loading={loading}
+            loopY={loopY}
+            firstOffset={firstOffset}
+            isMobile={isMobile}
+          />
           <AchieveSec loading={loading} loopY={loopY} isMobile={isMobile} />
           <HistorySec loading={loading} loopY={loopY} isMobile={isMobile} />
-          <GallerySec loading={loading} loopY={loopY} galleryProgress={setGalleryProgress} isMobile={isMobile} />
+          <GallerySec
+            loading={loading}
+            loopY={loopY}
+            galleryProgress={setGalleryProgress}
+            isMobile={isMobile}
+          />
           <MatchesSec loading={loading} loopY={loopY} isMobile={isMobile} />
           <SponsorSec loading={loading} loopY={loopY} isMobile={isMobile} />
           <ContentSec loading={loading} loopY={loopY} isMobile={isMobile} />
           <FooterSec loading={loading} loopY={loopY} />
-          {!isMobile && (
-            <VisualSec loading={loading} loopY={loopY} />
-          )}
+          {!isMobile && <VisualSec loading={loading} loopY={loopY} />}
         </div>
       </main>
     </>

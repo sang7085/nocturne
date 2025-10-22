@@ -64,6 +64,9 @@ export default function Home() {
       // PC
       const track = trackRef.current;
       const sections = Array.from(track.querySelectorAll("section"));
+      
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      gsap.globalTimeline.clear();
 
       // 🟡 높이 계산부를 함수로 분리 (resize 시 재활용 가능)
       const getTotalHeight = () => {

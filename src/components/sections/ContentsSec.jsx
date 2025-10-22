@@ -10,11 +10,6 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
     const el = e.currentTarget;
     el.classList.remove("active-up", "active-down");
   };
-  document.querySelectorAll("a").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      e.preventDefault();
-    });
-  });
   const handleLeave = (e) => {
     const el = e.currentTarget;
     const rect = el.getBoundingClientRect();
@@ -35,6 +30,12 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
       const baseOffset = contentSec.offsetTop;
       const gap = 400;
       const reset = 100;
+
+      document.querySelectorAll("a").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+        });
+      });
 
       if (isMobile) {
         gsap.set(conList, {

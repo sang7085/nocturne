@@ -26,6 +26,18 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(null);
   const [galleryProgress, setGalleryProgress] = useState(0);
 
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [loading]);
+
   // 분기처리
   useEffect(() => {
     const handleResize = () => {
@@ -115,15 +127,6 @@ export default function Home() {
         targetY = firstCloneHeight;
         scrollY = firstCloneHeight;
 
-        // if(isMobile) {
-        //   ScrollTrigger.getAll().forEach((st) => st.kill());
-        //   gsap.globalTimeline.clear();
-        //   if (track) {
-        //     gsap.killTweensOf(track);
-        //     gsap.set(track, { clearProps: "transform" });
-        //     track.style.transform = "none";
-        //   }
-        // }
       };
 
       window.addEventListener("wheel", onWheel, { passive: false });

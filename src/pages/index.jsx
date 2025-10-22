@@ -46,6 +46,12 @@ export default function Home() {
     cancelAnimationFrame(rafId.current);
     if(isMobile) {
       // 모바일
+      if (trackRef.current) {
+        gsap.killTweensOf(trackRef.current);
+        gsap.set(trackRef.current, { clearProps: "transform" });
+        trackRef.current.style.transform = "none";
+        console.log("transform 초기화 완료");
+      }
       const lenis = new Lenis();
       function raf(time) {
         lenis.raf(time);

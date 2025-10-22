@@ -66,7 +66,7 @@ export default function AchieveSec({ Loading, loopY, isMobile }) {
                 </div>
               </div>
               <div className="video-wrap">
-                <video src="/videos/video-1.mp4" autoPlay loop muted playsinline poster="/images/img-thumb01.png"></video>
+                <video src="/videos/video-1.mp4" autoPlay loop muted playsInline poster="/images/img-thumb01.png"></video>
                 <div className="fake-wall">
                   <div className="wall left-wall"></div>
                   <div className="wall right-wall"></div>

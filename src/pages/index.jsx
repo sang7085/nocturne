@@ -115,12 +115,14 @@ export default function Home() {
         targetY = firstCloneHeight;
         scrollY = firstCloneHeight;
 
-        ScrollTrigger.getAll().forEach((st) => st.kill());
-        gsap.globalTimeline.clear();
-        if (track) {
-          gsap.killTweensOf(track);
-          gsap.set(track, { clearProps: "transform" });
-          track.style.transform = "none";
+        if(!isMobile) {
+          ScrollTrigger.getAll().forEach((st) => st.kill());
+          gsap.globalTimeline.clear();
+          if (track) {
+            gsap.killTweensOf(track);
+            gsap.set(track, { clearProps: "transform" });
+            track.style.transform = "none";
+          }
         }
       };
 

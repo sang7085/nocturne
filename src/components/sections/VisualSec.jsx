@@ -39,7 +39,7 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
       tl.to(".slogan-txt", {
         yPercent: 0,
         duration: 1,
-        delay: 4.2,
+        // delay: 4.2,
       })
         .to(
           ".sub-desc span",

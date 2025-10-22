@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-
 export default function ContentSec({ Loading, loopY, isMobile }) {
   const once = useRef(false);
   const handleEnter = (e) => {
@@ -22,11 +21,10 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
     } else {
       el.classList.add("active-down");
     }
-
   };
 
   useEffect(() => {
-    if(!Loading) {
+    if (!Loading) {
       const conList = document.querySelectorAll(".content_list");
       const contentSec = document.querySelector(".contents_sec");
       const secTit = contentSec.querySelector(".sec_tit");
@@ -34,7 +32,7 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
       const gap = 400;
       const reset = 100;
 
-      if(isMobile) {
+      if (isMobile) {
         gsap.set(conList, {
           opacity: 0,
           y: 100,
@@ -59,7 +57,7 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
                   trigger: el,
                   start: "top center",
                   bottom: "bottom center",
-                }
+                },
               });
             });
           },
@@ -72,76 +70,96 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
                   trigger: el,
                   start: "top bottom",
                   bottom: "bottom center",
-                }
+                },
               });
             });
           },
         });
-
       } else {
-        if(loopY > baseOffset - gap && !once.current) {
-          gsap.to(secTit, {opacity: 1, y: 0});
+        if (loopY > baseOffset - gap && !once.current) {
+          gsap.to(secTit, { opacity: 1, y: 0 });
+          gsap.to(".content_wrap", { opacity: 1, y: 0 });
           once.current = true;
         }
-        
+
         if (loopY < reset && once.current) {
-          gsap.set(secTit, {opacity: 0, y: 100});
+          gsap.set(secTit, { opacity: 0, y: 100 });
+          gsap.set(".content_wrap", { opacity: 0, y: 100 });
           once.current = false;
         }
       }
-
     }
   }, [loopY, isMobile]);
 
-    return(
-        <>
-          <section className="contents_sec">
-            <div className="inner">
-              <h3 className="sec_tit">[CONTENTS]</h3>
-              <div className="content_wrap">
-                <Link href="#" className="content_list" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-                  <div className="tit_wrap">
-                    <div className="tit">NOTICE</div>
-                    <span className="tag">( 10 )</span>
-                  </div>
-                  <div className="other">
-                    <div className="update">LAST</div>
-                    <div className="date">2025.01.01</div>
-                  </div>
-                </Link>
-                <Link href="#" className="content_list" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-                  <div className="tit_wrap">
-                    <div className="tit">YOUTUBE</div>
-                    <span className="tag">( 104 )</span>
-                  </div>
-                  <div className="other">
-                    <div className="update">LAST</div>
-                    <div className="date">2025.12.31</div>
-                  </div>
-                </Link>
-                <Link href="#" className="content_list" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-                  <div className="tit_wrap">
-                    <div className="tit">INSTAGRAM</div>
-                    <span className="tag">( 206 )</span>
-                  </div>
-                  <div className="other">
-                    <div className="update">LAST</div>
-                    <div className="date">2025.12.25</div>
-                  </div>
-                </Link>
-                <Link href="#" className="content_list" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-                  <div className="tit_wrap">
-                    <div className="tit">X</div>
-                    <span className="tag">( 507 )</span>
-                  </div>
-                  <div className="other">
-                    <div className="update">LAST</div>
-                    <div className="date">2025.11.19</div>
-                  </div>
-                </Link>
+  return (
+    <>
+      <section className="contents_sec">
+        <div className="inner">
+          <h3 className="sec_tit">[CONTENTS]</h3>
+          <div className="content_wrap">
+            <Link
+              href="#"
+              className="content_list"
+              onMouseEnter={handleEnter}
+              onMouseLeave={handleLeave}
+            >
+              <div className="tit_wrap">
+                <div className="tit">NOTICE</div>
+                <span className="tag">( 10 )</span>
               </div>
-            </div>
-          </section> 
-        </>
-    )
+              <div className="other">
+                <div className="update">LAST</div>
+                <div className="date">2025.01.01</div>
+              </div>
+            </Link>
+            <Link
+              href="#"
+              className="content_list"
+              onMouseEnter={handleEnter}
+              onMouseLeave={handleLeave}
+            >
+              <div className="tit_wrap">
+                <div className="tit">YOUTUBE</div>
+                <span className="tag">( 104 )</span>
+              </div>
+              <div className="other">
+                <div className="update">LAST</div>
+                <div className="date">2025.12.31</div>
+              </div>
+            </Link>
+            <Link
+              href="#"
+              className="content_list"
+              onMouseEnter={handleEnter}
+              onMouseLeave={handleLeave}
+            >
+              <div className="tit_wrap">
+                <div className="tit">INSTAGRAM</div>
+                <span className="tag">( 206 )</span>
+              </div>
+              <div className="other">
+                <div className="update">LAST</div>
+                <div className="date">2025.12.25</div>
+              </div>
+            </Link>
+            <Link
+              href="#"
+              className="content_list"
+              onMouseEnter={handleEnter}
+              onMouseLeave={handleLeave}
+            >
+              <div className="tit_wrap">
+                <div className="tit">X</div>
+                <span className="tag">( 507 )</span>
+              </div>
+              <div className="other">
+                <div className="update">LAST</div>
+                <div className="date">2025.11.19</div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }

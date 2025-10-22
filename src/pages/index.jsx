@@ -64,7 +64,7 @@ export default function Home() {
         const heights = sections.slice(1, -1).map((s) => s.offsetHeight);
         return heights.reduce((a, b) => a + b, 0);
       };
-
+[]
       let totalHeight = getTotalHeight(); // 🟡 기존 totalHeight 대신 함수 호출
       const firstCloneHeight = sections[0].offsetHeight;
 

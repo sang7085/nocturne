@@ -30,7 +30,7 @@ function TrophyModel({ isMobile, isActive }) {
 
   useFrame((_, delta) => {
     if (isActive && ref.current) {
-      ref.current.rotation.y += delta * 0.5;
+      ref.current.rotation.y += delta * 0.9;
       invalidate();
     }
   });
@@ -39,9 +39,9 @@ function TrophyModel({ isMobile, isActive }) {
     <primitive
       ref={ref}
       object={scene}
-      scale={isMobile ? 7 : 10}
+      scale={isMobile ? 7 : 11}
       position={[0, 0, 0]}
-      rotation={[0, 0, -0.3]}
+      rotation={[0, 0, 0.3]}
     />
   );
 }
@@ -81,6 +81,8 @@ export default function ModelTrophy({ firstOffset, isMobile, loopY }) {
     >
       <Suspense fallback={null}>
         <CameraController />
+        {/* 💡 조명 */}
+        <directionalLight position={[0, 5, 5]} intensity={1} color="#820505" />
         <ambientLight intensity={1.2} color="#000" />
         <Environment preset="night" background={false} intensity={0.25} />
         <TrophyModel isMobile={isMobile} isActive={isActive} />

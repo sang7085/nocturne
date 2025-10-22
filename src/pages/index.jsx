@@ -115,7 +115,7 @@ export default function Home() {
         targetY = firstCloneHeight;
         scrollY = firstCloneHeight;
 
-        if(!isMobile) {
+        if(isMobile) {
           ScrollTrigger.getAll().forEach((st) => st.kill());
           gsap.globalTimeline.clear();
           if (track) {

@@ -46,11 +46,11 @@ export default function Home() {
     cancelAnimationFrame(rafId.current);
     if(isMobile) {
       // 모바일
+      // 모바일 환경에서 가상스크롤 제거
       if (trackRef.current) {
-        gsap.killTweensOf(trackRef.current);
-        gsap.set(trackRef.current, { clearProps: "transform" });
+        // gsap.killTweensOf(trackRef.current);
+        // gsap.set(trackRef.current, { clearProps: "transform" });
         trackRef.current.style.transform = "none";
-        console.log("transform 초기화 완료");
       }
       const lenis = new Lenis();
       function raf(time) {
@@ -70,7 +70,7 @@ export default function Home() {
         const heights = sections.slice(1, -1).map((s) => s.offsetHeight);
         return heights.reduce((a, b) => a + b, 0);
       };
-[]
+
       let totalHeight = getTotalHeight(); // 🟡 기존 totalHeight 대신 함수 호출
       const firstCloneHeight = sections[0].offsetHeight;
 
@@ -112,14 +112,7 @@ export default function Home() {
         currentY = firstCloneHeight;
         targetY = firstCloneHeight;
         scrollY = firstCloneHeight;
-        // console.log("totalHeight 갱신:", totalHeight);
       };
-
-      // if (trackRef.current) {
-      //   cancelAnimationFrame(rafId);
-      //   gsap.killTweensOf(trackRef.current);
-      //   gsap.set(trackRef.current, { clearProps: "transform", y: 0 });
-      // }
 
       window.addEventListener("wheel", onWheel, { passive: false });
       window.addEventListener("resize", handleResize);

@@ -38,10 +38,7 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
       });
 
       if (isMobile) {
-        gsap.set(conList, {
-          opacity: 0,
-          y: 100,
-        });
+        gsap.set(conList, {opacity: 0, y: 100});
 
         gsap.to(secTit, {
           opacity: 1,
@@ -82,12 +79,13 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
         });
       } else {
         if (loopY > baseOffset - gap && !once.current) {
+          gsap.to(conList, {opacity: 1, y: 0});
           gsap.to(secTit, { opacity: 1, y: 0 });
           gsap.to(".content_wrap", { opacity: 1, y: 0 });
           once.current = true;
         }
 
-        if (loopY < reset && once.current) {
+        if (loopY < reset) {
           gsap.set(conList, {opacity: 1, y: 0});
           gsap.set(secTit, { opacity: 0, y: 100 });
           gsap.set(".content_wrap", { opacity: 0, y: 100 });

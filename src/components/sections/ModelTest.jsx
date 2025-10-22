@@ -16,24 +16,20 @@ function CameraController() {
   return null;
 }
 
-// ✅ GLB 모델 컴포넌트 (Canvas 내부에서만 호출!)
 function TrophyModel({ isMobile }) {
   const { scene } = useGLTF("/models/last.glb");
   const ref = useRef();
 
-  // 🎨 재질 세팅
   useEffect(() => {
     scene.traverse((o) => {
       if (o.isMesh && o.material) {
         o.material.metalness = 1;
         o.material.roughness = 0.2;
         o.material.envMapIntensity = 0.3;
-        o.material.needsUpdate = true;
       }
     });
   }, [scene]);
 
-  // 🎞 회전 애니메이션
   useFrame(() => {
     if (ref.current) ref.current.rotation.y += 0.02;
   });
@@ -62,6 +58,13 @@ export default function ModelTrophy({ firstOffset, isMobile }) {
         pointerEvents: "none",
         zIndex: 1,
       }}
+      gl={{
+        antialias: false, 
+        powerPreference: "high-performance",
+        alpha: true,
+      }}
+      dpr={[1, 1.5]}
+      performance={{ min: 0.5 }}
     >
       <Suspense fallback={null}>
         <CameraController />

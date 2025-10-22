@@ -75,7 +75,6 @@ export default function ContentSec({ Loading, loopY, isMobile }) {
           scrollTrigger: {
             trigger: secTit,
             start: "top bottom",
-            markers: true,
           },
         });
         conList.forEach((el) => {

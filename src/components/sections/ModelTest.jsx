@@ -42,7 +42,7 @@ function TrophyModel({ isMobile }) {
     <primitive
       ref={ref}
       object={scene}
-      scale={isMobile ? 4 : 5}
+      scale={isMobile ? 4 : 7}
       position={[0, 0, 0]}
       rotation={[0, 0, -0.3]}
     />

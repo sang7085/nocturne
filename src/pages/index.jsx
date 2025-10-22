@@ -10,6 +10,7 @@ import MatchesSec from "@/components/sections/MatchesSec";
 import SponsorSec from "@/components/sections/SponsorSec";
 import ContentSec from "@/components/sections/ContentsSec";
 import FooterSec from "@/components/sections/FooterSec";
+import ModelTest from "@/components/sections/ModelTest";
 
 import gsap from "gsap";
 import Lenis from "@studio-freight/lenis";
@@ -165,6 +166,7 @@ export default function Home() {
       <main className={isMobile ? "mobile" : "pc"}>
         <div ref={trackRef}>
           {!isMobile && <FooterSec loading={loading} loopY={loopY} />}
+          <ModelTest firstOffset={firstOffset} isMobile={isMobile} />
           <VisualSec
             loading={loading}
             loopY={loopY}

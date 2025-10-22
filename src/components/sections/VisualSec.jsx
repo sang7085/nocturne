@@ -1,19 +1,27 @@
 "use client";
-
 import { useEffect, useRef } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+import ModelTest from "@/components/sections/ModelTest";
+
 
 export default function VisualSec({ Loading, loopY, isMobile }) {
   const once = useRef(null);
+
+  function Model() {
+    const { scene } = useGLTF("/models/trophy.glb");
+    return <primitive object={scene} scale={1} />;
+  }
+
   useEffect(() => {
     const totalHeight = window.innerHeight * 1.5; // 150vh
     const fakeHeight = window.innerHeight * 0.5; // 50vh
-    const visualCenter = totalHeight / 2 - fakeHeight / 2;
 
     if (once.current) return;
-    
+
     gsap.set(".slogan-txt", {
       yPercent: 100,
     });
@@ -30,6 +38,7 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
       yPercent: -50,
     });
     if (!Loading) {
+
       // loading timeline
       const tl = gsap.timeline({
         defaults: {
@@ -81,29 +90,6 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
         const progress = (loopY - baseOffset) / (visualSecH - fakeVh);
         const relativeY = progress * 100 + fakeVh;
         const relativeY2 = progress * 200;
-        // console.log(progress);
-        // if (loopY >= baseOffset) {
-
-        //   gsap.to(".trophy", { y: -relativeY, xPercent: -50, overwrite: "auto" });
-        //   gsap.to(".slogan-txt", { y: relativeY2, overwrite: "auto" });
-        // } else {
-        //   // 범위 벗어나면 원상복귀
-        //   gsap.to(".trophy", { y: 0, xPercent: -50, overwrite: "auto" });
-        //   gsap.to(".slogan-txt", { y: 0, overwrite: "auto" });
-        // }
-
-        // const fake = sec.querySelector(".visual_fake");
-        // const secHeight = sec.offsetHeight;
-        // const fakeHeight = fake.offsetHeight;
-        // const inSection = loopY >= baseOffset && loopY <= baseOffset + secHeight;
-        // if (inSection) {
-        //     const localY = loopY - baseOffset; // visualSec 내부 상대좌표
-        //     const wrappedY = ((localY + fakeHeight) % secHeight) - fakeHeight;
-
-        //     gsap.set(".trophy", { y: wrappedY });
-        //   }else {
-        //     gsap.set(".trophy", { y: 0 }); // 또는 유지
-        //   }
       }
     }
   }, [loopY, isMobile]);
@@ -140,9 +126,10 @@ export default function VisualSec({ Loading, loopY, isMobile }) {
             <p>Give up pursuing eloquence, </p>
             <p>unless you can speak as you feel</p>
           </div>
-          <div className="trophy">
+          {/* <div className="trophy">
             <img src="/images/demo-trophy.png" alt="" />
-          </div>
+          </div> */}
+          {/* <ModelTest /> */}
         </div>
       </section>
     </>

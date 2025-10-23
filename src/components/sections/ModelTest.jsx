@@ -2,7 +2,7 @@
 import * as THREE from "three";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { useGLTF, Environment } from "@react-three/drei";
+import { useGLTF, Environment, OrbitControls } from "@react-three/drei";
 
 function CameraController() {
   const { camera } = useThree();
@@ -39,9 +39,9 @@ function TrophyModel({ isMobile, isActive }) {
     <primitive
       ref={ref}
       object={scene}
-      scale={isMobile ? 7 : 11}
+      scale={isMobile ? 8 : 11}
       position={[0, 0, 0]}
-      rotation={[0, 0, 0.3]}
+      rotation={[0, 0, 0.1]}
     />
   );
 }
@@ -53,18 +53,18 @@ export default function ModelTrophy({ firstOffset, isMobile, loopY }) {
     const visualStart = 0;           // 첫 섹션 시작점
     const visualEnd = 2000;          // VisualSec 끝나는 Y
     const footerStart = 6000;        // FooterSec 시작점
-    const footerEnd = 7000;          // FooterSec 끝나는 Y
+    const footerEnd = 8000;          // FooterSec 끝나는 Y
 
     if ((loopY >= visualStart && loopY < visualEnd) || (loopY > footerStart && loopY < footerEnd)) {
-      setIsActive(true); // ✅ Trophy 활성화
+      setIsActive(true);
     } else {
-      setIsActive(false); // ❌ Trophy 비활성화 (렌더 중단)
+      setIsActive(false);
     }
   }, [loopY]);
 
   return (
     <Canvas
-      frameloop="demand" // 기본적으로 정지 상태
+      frameloop="demand"
       style={{
         position: "absolute",
         top: isMobile ? 0 : firstOffset,
@@ -86,6 +86,7 @@ export default function ModelTrophy({ firstOffset, isMobile, loopY }) {
         <ambientLight intensity={1.2} color="#000" />
         <Environment preset="night" background={false} intensity={0.25} />
         <TrophyModel isMobile={isMobile} isActive={isActive} />
+        {/* <OrbitControls /> */}
       </Suspense>
     </Canvas>
   );

@@ -27,44 +27,30 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(null);
   const [galleryProgress, setGalleryProgress] = useState(0);
 
-
+  // ✅ 페이지 로딩 중 스크롤 막기
   useEffect(() => {
-    if (loading) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = loading ? "hidden" : "";
+    return () => (document.body.style.overflow = "");
   }, [loading]);
 
-  // 분기처리
+  // ✅ 반응형 분기 처리
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1279) {
-        setIsMobile(false);
-      } else {
-        setIsMobile(true);
-      }
+      setIsMobile(window.innerWidth <= 1279);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // ✅ PC/모바일 별 스크롤 로직
   useEffect(() => {
-    // null 일때 useEffect 실행안되게 막기
     if (isMobile === null) return;
     cancelAnimationFrame(rafId.current);
+
     if (isMobile) {
-      // 모바일
-      // 모바일 환경에서 가상스크롤 제거
-      if (trackRef.current) {
-        // gsap.killTweensOf(trackRef.current);
-        // gsap.set(trackRef.current, { clearProps: "transform" });
-        trackRef.current.style.transform = "none";
-      }
+      // 📱 모바일: 일반 스크롤 + Lenis
+      if (trackRef.current) trackRef.current.style.transform = "none";
       const lenis = new Lenis();
       function raf(time) {
         lenis.raf(time);
@@ -74,33 +60,27 @@ export default function Home() {
       requestAnimationFrame(raf);
       return;
     } else {
-      // PC
+      // 💻 PC: 가상스크롤
       const track = trackRef.current;
       const sections = Array.from(track.querySelectorAll("section"));
 
-      // 🟡 높이 계산부를 함수로 분리 (resize 시 재활용 가능)
       const getTotalHeight = () => {
         const heights = sections.slice(1, -1).map((s) => s.offsetHeight);
         return heights.reduce((a, b) => a + b, 0);
       };
 
-      let totalHeight = getTotalHeight(); // 🟡 기존 totalHeight 대신 함수 호출
-      const firstCloneHeight = sections[0].offsetHeight;
-
+      let totalHeight = getTotalHeight();
+      let firstCloneHeight = sections[0]?.offsetHeight || 0;
       let scrollY = firstCloneHeight;
       let targetY = firstCloneHeight;
       let currentY = targetY;
       const ease = 0.05;
 
-      if (sections.length > 0) {
-        setFirstOffset(firstCloneHeight);
-      }
+      if (sections.length > 0) setFirstOffset(firstCloneHeight);
 
       const update = () => {
         currentY += (targetY - currentY) * ease;
-        const loopYVal = Math.round(
-          ((currentY % totalHeight) + totalHeight) % totalHeight
-        );
+        const loopYVal = Math.round(((currentY % totalHeight) + totalHeight) % totalHeight);
         track.style.transform = `translateY(-${loopYVal}px)`;
         setLoopY(loopYVal);
         rafId.current = requestAnimationFrame(update);
@@ -124,10 +104,11 @@ export default function Home() {
 
       const handleResize = () => {
         totalHeight = getTotalHeight();
+        firstCloneHeight = sections[0]?.offsetHeight || 0;
         currentY = firstCloneHeight;
         targetY = firstCloneHeight;
         scrollY = firstCloneHeight;
-
+        setFirstOffset(firstCloneHeight); // 리사이즈 시 갱신
       };
 
       window.addEventListener("wheel", onWheel, { passive: false });
@@ -142,7 +123,7 @@ export default function Home() {
     }
   }, [isMobile]);
 
-  // floating 텍스트 모션
+  // ✅ floating 텍스트 모션
   useEffect(() => {
     if (galleryProgress > 0 && galleryProgress < 1) {
       gsap.to(".floating_txt2.pc", { zIndex: 9999, opacity: 1, duration: 0.6 });
@@ -151,10 +132,27 @@ export default function Home() {
     }
   }, [galleryProgress]);
 
+  // useEffect(() => {
+  //   if (isMobile) return;
+
+  //   const visual = document.querySelector(".visual_sec");
+  //   if (!visual) return;
+
+  //   const observer = new ResizeObserver(() => {
+  //     const newHeight = visual.offsetHeight;
+  //     setFirstOffset(newHeight);
+  //     console.log("✅ [ResizeObserver] firstOffset 업데이트:", newHeight);
+  //   });
+
+  //   observer.observe(visual);
+  //   return () => observer.disconnect();
+  // }, [isMobile]);
+
   return (
     <>
       <Loading setLoading={setLoading} loading={loading} />
       <Header />
+
       <div className="floating_txt2 pc">
         <div className="tit_wrap">
           <h3 className="sub_tit">[moment of nocturne]</h3>
@@ -163,15 +161,11 @@ export default function Home() {
           </h2>
         </div>
       </div>
+
       <main className={isMobile ? "mobile" : "pc"}>
         <div ref={trackRef}>
           {!isMobile && <FooterSec loading={loading} loopY={loopY} />}
-          <VisualSec
-            loading={loading}
-            loopY={loopY}
-            firstOffset={firstOffset}
-            isMobile={isMobile}
-          />
+          <VisualSec loading={loading} loopY={loopY} firstOffset={firstOffset} isMobile={isMobile} />
           <ModelTest firstOffset={firstOffset} isMobile={isMobile} loopY={loopY} />
           <AchieveSec loading={loading} loopY={loopY} isMobile={isMobile} />
           <HistorySec loading={loading} loopY={loopY} isMobile={isMobile} />
